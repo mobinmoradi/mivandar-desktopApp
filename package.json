@@ -1,9 +1,13 @@
 {
   "name": "mivandar",
   "author": "mobin moradi & behdad saedi & kimia sayar",
+  "main": "app.js",
   "scripts": {
+    "start": "electron ."
   },
   "dependencies": {
+    "body-parser": "^1.19.2",
+    "ejs": "^3.1.6",
     "electron": "^17.2.0",
     "express": "^4.17.3",
     "nodemon": "^2.0.15"
