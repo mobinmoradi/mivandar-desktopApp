@@ -1,3 +1,8 @@
 <%- include('./includes/head.ejs') -%>  
 <h1>hello world!</h1>
+<button onclick="location.href='/about'">page 2</button>
+<i style="color: blue;" class='bx bxs-bowl-rice' ></i>
+<% for( let index =1; index <= 5; index++ ) { %>
+    <p>this is number: <%= index %> </p>
+<% } %>
 <%- include('./includes/foot.ejs') -%> 

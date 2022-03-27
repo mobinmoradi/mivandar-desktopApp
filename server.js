@@ -3,6 +3,8 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const publicRoutes = require('./router/public.js');
+
 
 const app = express()
 
@@ -12,16 +14,14 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.set('view engine','ejs')
 app.set('views','views')
 app.use(express.static(path.join(__dirname,'public')))
-
+app.use(express.static(path.join(__dirname,'node_modules','boxicons')))
 
 
 //routs
-app.get('/',(req,res)=>{
-    res.render('index.ejs',{appTitle: "mivandar" })
-})
-
+app.get('/about',publicRoutes.about)
+app.get('/',publicRoutes.index)
 
 
 app.listen(3000,()=>{
-    console.log("server is running on port 3000!")
+    console.log("server is running on port: 3000!")
 })
