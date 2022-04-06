@@ -9,19 +9,20 @@ const publicRoutes = require('./router/public.js');
 const app = express()
 
 
+
 // configs
-app.use(bodyParser.urlencoded({extended: false}))
-app.set('view engine','ejs')
-app.set('views','views')
-app.use(express.static(path.join(__dirname,'public')))
-app.use(express.static(path.join(__dirname,'node_modules','boxicons')))
+app.use(bodyParser.urlencoded({ extended: false }))
+app.set('view engine', 'ejs')
+app.set('views', 'views')
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'node_modules', 'boxicons')))
+
 
 
 //routs
-app.get('/about',publicRoutes.about)
-app.get('/',publicRoutes.index)
+app.use('/', publicRoutes)
 
 
-app.listen(3000,()=>{
+app.listen(3000, () => {
     console.log("server is running on port: 3000!")
 })

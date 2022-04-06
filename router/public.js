@@ -1,11 +1,17 @@
-const path =require('path');
+const path = require('path');
 
-// @desc get / 
-exports.index = (req,res)=>{
-    res.render(path.join(__dirname,'..','views','index.ejs'),{appTitle:'mivandar'})
-}
+const express = require('express')
 
-// @desc get /about
-exports.about = (req,res)=>{
-    res.render(path.join(__dirname,'..','views','about.ejs'),{appTitle:'mivandar'})
-}
+
+const router = express.Router()
+
+
+router.get('/', (req, res) => {
+    res.render(path.join(__dirname, '..', 'views', 'index.ejs'), { appTitle: 'mivandar' })
+})
+// define the about route
+router.get('/about', (req, res) => {
+    res.render(path.join(__dirname, '..', 'views', 'about.ejs'), { appTitle: 'mivandar' })
+})
+
+module.exports = router

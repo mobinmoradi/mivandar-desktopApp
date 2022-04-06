@@ -1,6 +1,9 @@
-const {app , BrowserWindow} =require('electron')
-const server = require('./server');
 const path = require('path');
+
+const {app , BrowserWindow} =require('electron')
+
+const server = require('./server');
+
 
 app.on('ready', function() {
   mainWindow = new BrowserWindow({
