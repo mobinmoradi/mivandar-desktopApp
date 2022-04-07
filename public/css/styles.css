@@ -1,15 +1,18 @@
 @font-face {
     font-family: "Vazir";
-    src: url("../css/font/vazir/Vazir.eot") format("eot"); 
-     src:url("../css/font/vazir/Vazir.ttf") format("ttf"),
-      url("../css/font/vazir/Vazir.woff") format("woff"),
-      url("../css/font/vazir/Vazir.woff2") format("woff2");
+    src: url("../font/vazir/Vazir.eot") format("eot"); 
+     src:url("../font/vazir/Vazir.ttf") format("ttf"),
+      url("../font/vazir/Vazir.woff") format("woff"),
+      url("../font/vazir/Vazir.woff2") format("woff2");
   }
 *{
     padding: 0; 
     margin: 0;
 }
 body{
+    overflow-x: hidden;
+    width: 100%;
+    
     direction: rtl;
     font-family: "Vazir", Arial, Helvetica, sans-serif;}
 :root {
@@ -29,20 +32,33 @@ body{
 .ms-3{margin-right: 1rem;}
 .ms-5{margin-right: 3rem;}
 .mb-3{margin-bottom: 1rem;}
-.pe-1{padding-right: .3rem;}
+.pe-1{padding-right: .4rem; font-size: 30px;}
 ps-1{padding-left:.5rem ;}
 .pt-3{padding-top: 1rem;}
 .d-f{display: flex;}
 .text-center{text-align: center;}
 .rtl{direction: rtl;}
 .text-logo{color: var(--logotext-color); font-weight: lighter;}
-.under-logo{color: var(--blue-color); width: 110px; font-size: 7px;}
-.logo{position: relative;
-    top: 15%;
-    right: 10%;
+.under-logo{color: var(--blue-color); width: 150px; font-size: 10px;}
+.logo{
+    margin-top: 20%;
+    margin-right: 10%;
+
 }
+.aboutl{
+    position: fixed;
+    top:10%;
+    right: 5%;
+    z-index: 2;
+}
+
+.login{
+    height: 550px;
+}
+
 a{text-decoration: none;}
 .btn{
+    min-width: 100px;
     padding:.5rem 2rem  .5rem 2rem;
     size: 1rem;
     margin-top: 2rem;
@@ -59,32 +75,50 @@ a{text-decoration: none;}
     background-color: var(--hoverblue-color);
     border:1px solid var(--hoverblue-color);
 }
-.login{
-    height: 100vh;
-    width: 100vw;
-    background-image:url('../img/zrng-n-gharib-FQn6OVQ5ibU-unsplash.jpg') ;
+.under{
+    width: 100%;
+    height: 100%;
+ 
+    background-image: url("../img/loginBackground.jpg");
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    z-index: -2;
+}
+
+ .background{
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    background: white;
+    transform: rotate(-5deg) translate(100px,60px);
+    border-radius: 50px;
+    min-width: 500px;
  }
 .login-1{
     width: 45%;
     height: 100%;
-    background-color: white;
+    
 }
 .login-1 form{
-    padding: 30% 30% 20% 20%;
+    padding: 5% 25% 20% 25%;
 }
 .login-1 .d-f{
     align-items: center;
 }
 .login-1 .d-f img{
-   width: 4%;
+   width: 9%;
 }
 .login-1 form  input{
   width: 100%;
   border: .5px solid var(--blue-color);
   border-radius: 3px;
-  font-size: 1.7rem;
+  font-size: 1rem;
+  min-width: 200px;
+  padding: 3%;
+  direction: ltr;
 }
 .login form  label{
     padding-right: .3rem;
@@ -106,34 +140,66 @@ a{text-decoration: none;}
     border: .02rem solid white;
     border-radius: 5px;
     padding: .4rem;
-    position: absolute;
-    bottom: 20px;
-    left: 20px;}
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    transform: scale(1.5);
+}
+.required::after{
+    content: "*";
+    color: red;
+}
+.test{
+    position: fixed;
+    top: 0;
+    left: 0;
+}
 /* --------------------login-finish -------------------*/
+.underAbout{
+    width: 100%;
+    height: 100%;
+ 
+    background-image: url("../img/aboutUsBackground.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    z-index: -2;
+}
 .about{
     width: 100vw;
     height: 100vh;
-    background-image: url(../img/zrng-n-gharib-FQn6OVQ5ibU-unsplash.jpg);
-    background-repeat: no-repeat;
-    background-size: cover
+   padding: 4% 8%;
+
+}
+.background-about{
+    width: 60%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    background: white;
+    transform: rotate(5deg) translate(-100px,50px);
+    border-radius: 50px;
+    min-width: 500px;
+    left: 0;
 }
 .about .about-1{
     position: absolute;
     left: 0;
-    background-color: white;
     width: 50%;
     height: 100%;
 }
 .about-1 p{
     font-size: .7rem;
 }
-.about-1 h2{
+ h2{
     color: var(--blue-color); 
     font-weight: lighter;
+    font-size: larger;
 }
-.about-1 .about-text{
-    padding: 0 2rem;
-    margin-top: 2.9rem;
+.about-text{
+    padding: 0 1rem;
+    margin-top: 1.5rem;
 }
 .about-box{
     width: 90%;
@@ -150,7 +216,7 @@ a{text-decoration: none;}
     background-color:var(--light-blue-color);
     border: 1px solid var(--light-blue-color);
     border-radius: 15px;
-    padding: 1rem 2rem;
+    padding: 0.5rem 1rem;
     flex-direction: column;
     align-items: center;
     flex: 1;

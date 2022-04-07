@@ -1,5 +1,13 @@
 <%- include('./includes/head.ejs') -%>
+    <style>
+        body {
+            overflow: hidden;
+        }
+    </style>
+
     <div class="login d-f">
+        <div class="under"></div>
+        <div class="background"></div>
         <div class="login-1">
             <div class="logo">
                 <div class="d-f"><img src="img/icon.png">
@@ -7,29 +15,35 @@
                 </div>
                 <p class="under-logo">سامانه مدیریت رزرواسیون مهمانسرا</p>
             </div>
-            <form>
+
+            <form action="/login" method="post">
                 <div class="text-center">
                     <h2>ورود</h2>
                 </div>
                 <div>
                     <p class="mt-3">برای اتصال به سیستم وارد شوید.</p>
                     <div class="mt-3">
-                        <div>
-                            <label for="input-text">نام کاربری</label>
-                        </div>
-                        <input type="text" class="mt-2" id="input-text">
+                        <label class="required" for="input-text">نام کاربری</label>
+
+
+                        <input type="text" autofocus class="mt-2" id="input-text" name="userName" <% if(userName !=""){ %> value=<%= userName %><% } %>  >
                     </div>
                     <div class="mt-3">
-                        <div>
-                            <label for="input-password">کلمه عبور</label>
-                            <i class='bx'></i>
-                        </div>
-                        <input type="password" class="mt-2" id="input-password">
+                        <label class="required" for="input-password">کلمه عبور</label>
+                        <input type="password" class="mt-2" id="input-password" name="password" value="">
                     </div>
-                    <button type="submit" class="btn btn-blue ">ورود</button>
+                    <button type="submit" class="btn btn-blue " >ورود</button>
                 </div>
             </form>
+            <div class="test">
+                <% if(errors) errors.forEach((error)=>{ %>
+                    <h3>
+                        <%= error.message %>
+                    </h3>
+                    <% }) %>
+            </div>
+
         </div>
-        <div class="logo-phone"><a href="about"><i class="bx bxs-phone-call"></i></a></div>
+        <div class="logo-phone"><a href="/about"><i class="bx bxs-phone-call"></i></a></div>
     </div>
     <%- include('./includes/foot.ejs') -%>

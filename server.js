@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const publicRoutes = require('./router/public.js');
-
+const dashboardRoutes = require('./router/dashboard.js');
 
 const app = express()
 
@@ -18,9 +18,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.static(path.join(__dirname, 'node_modules', 'boxicons')))
 
 
-
 //routs
-app.use('/', publicRoutes)
+app.use('/', publicRoutes.router)
+app.use('/dashboard', dashboardRoutes.router)
 
 
 app.listen(3000, () => {

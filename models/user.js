@@ -16,14 +16,15 @@ const User = sequelize.define('User', {
         type:DataTypes.STRING
     },
     userName:{
-        type:DataTypes.STRING
+     type:DataTypes.STRING
     },
     password:{
         type:DataTypes.STRING
     }
+
 });
 
-module.exports.User = User
+module.exports = {User}
 
 
 
