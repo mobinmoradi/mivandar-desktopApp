@@ -1,3 +1,178 @@
-h1{
-    color: blue;
+@font-face {
+    font-family: "Vazir";
+    src: url("../css/font/vazir/Vazir.eot") format("eot"); 
+     src:url("../css/font/vazir/Vazir.ttf") format("ttf"),
+      url("../css/font/vazir/Vazir.woff") format("woff"),
+      url("../css/font/vazir/Vazir.woff2") format("woff2");
+  }
+*{
+    padding: 0; 
+    margin: 0;
 }
+body{
+    direction: rtl;
+    font-family: "Vazir", Arial, Helvetica, sans-serif;}
+:root {
+    --blue-color: #3A57E8;
+    --hoverblue-color: #586fe0;
+    --light-blue-color:rgba(196, 204, 248,29);
+    --logotext-color: #232D42;
+    --boldtext-color: #000000;
+    --graytext-color: #8A92A6;
+    --redwarning-color: #C03221;
+    --orange-warning-color: #F6A300;
+  }
+
+.mt-2{ margin-top: .5rem;}
+.mt-3{margin-top: 1rem;}
+.mt-5{margin-top: 2rem;}
+.ms-3{margin-right: 1rem;}
+.ms-5{margin-right: 3rem;}
+.mb-3{margin-bottom: 1rem;}
+.pe-1{padding-right: .3rem;}
+ps-1{padding-left:.5rem ;}
+.pt-3{padding-top: 1rem;}
+.d-f{display: flex;}
+.text-center{text-align: center;}
+.rtl{direction: rtl;}
+.text-logo{color: var(--logotext-color); font-weight: lighter;}
+.under-logo{color: var(--blue-color); width: 110px; font-size: 7px;}
+.logo{position: relative;
+    top: 15%;
+    right: 10%;
+}
+a{text-decoration: none;}
+.btn{
+    padding:.5rem 2rem  .5rem 2rem;
+    size: 1rem;
+    margin-top: 2rem;
+    display: block;   
+    font-family: "Vazir", Arial, Helvetica, sans-serif;
+}
+.btn-blue{
+    background-color: var(--blue-color);
+    color: white;
+    border:1px solid var(--blue-color) ;
+    border-radius: 5px; 
+}
+.btn-blue:hover{
+    background-color: var(--hoverblue-color);
+    border:1px solid var(--hoverblue-color);
+}
+.login{
+    height: 100vh;
+    width: 100vw;
+    background-image:url('../img/zrng-n-gharib-FQn6OVQ5ibU-unsplash.jpg') ;
+    background-repeat: no-repeat;
+    background-size: contain;
+ }
+.login-1{
+    width: 45%;
+    height: 100%;
+    background-color: white;
+}
+.login-1 form{
+    padding: 30% 30% 20% 20%;
+}
+.login-1 .d-f{
+    align-items: center;
+}
+.login-1 .d-f img{
+   width: 4%;
+}
+.login-1 form  input{
+  width: 100%;
+  border: .5px solid var(--blue-color);
+  border-radius: 3px;
+  font-size: 1.7rem;
+}
+.login form  label{
+    padding-right: .3rem;
+    color: var(--graytext-color);
+}
+.login form  p{
+    text-align: center;
+    color: var(--graytext-color);
+}
+.login form  button{
+    width: 40%;
+    margin-right: 30%;
+}
+.login .logo-phone {
+    width: 1rem;
+    height: 1rem;
+    color: var(--blue-color);
+    background-color: white;
+    border: .02rem solid white;
+    border-radius: 5px;
+    padding: .4rem;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;}
+/* --------------------login-finish -------------------*/
+.about{
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../img/zrng-n-gharib-FQn6OVQ5ibU-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-size: cover
+}
+.about .about-1{
+    position: absolute;
+    left: 0;
+    background-color: white;
+    width: 50%;
+    height: 100%;
+}
+.about-1 p{
+    font-size: .7rem;
+}
+.about-1 h2{
+    color: var(--blue-color); 
+    font-weight: lighter;
+}
+.about-1 .about-text{
+    padding: 0 2rem;
+    margin-top: 2.9rem;
+}
+.about-box{
+    width: 90%;
+    margin: auto;
+}
+.about-box .boxs{
+    flex-direction: column;
+}
+.about-box .boxs .box-1-2{
+    justify-content: space-between;
+}
+.box-item{
+    margin: 1.3rem 1.5rem;
+    background-color:var(--light-blue-color);
+    border: 1px solid var(--light-blue-color);
+    border-radius: 15px;
+    padding: 1rem 2rem;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+.box-item i,.box-item h4 ,.box-item p{margin-bottom: .3rem;}
+.box-item i{color: var(--blue-color);}
+.box-item p,.box-item h4{font-weight: lighter;}
+.about-box .boxs a{
+    margin-top: 1rem;
+    width: 18%;
+    margin-right: 35%;
+    font-size: 70%;
+    border-radius:3px ;
+    text-align: center; 
+}
+.logo-all img{
+    align-self: center;
+    width:20% ;
+    height: 20%;}
+.logo-all .d-f h2{
+    font-weight: lighter;
+    font-size: 1.5rem;
+}
+/* ------------------about-us-finish----------------- */
+

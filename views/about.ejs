@@ -1,4 +1,49 @@
-<% include('./includes/head.ejs') %>
-<h1>this is about page</h1>
-<button onclick="location.href='/'">home</button>
-<% include('./includes/foot.ejs') %>  
+<%- include('./includes/head.ejs') -%>
+
+    <div class="about d-f">
+        <div class="logo-all mt-3 ms-3">
+            <div class="d-f"><img src="img/icon.png">
+                <h2 class="pe-1 text-logo">میواندار</h2>
+            </div>
+            <p class="under-logo">سامانه مدیریت رزرواسیون مهمانسرا</p>
+        </div>
+        <div class="about-1 pt-3">
+            <div class="about-text">
+                <h2 class="mb-3">درباره ما</h2>
+                <p class="pe-1">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
+                    است.<br>
+                    چاپگرها
+                    و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با بود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و
+                    آینده شناختفزارها شناخت بیشتری
+                    را برای طراحان رایانه ای الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد
+                </p>
+            </div>
+            <div class="mt-5 ms-5 mb-3">
+                <h2>اطلاعات تماس</h2>
+            </div>
+            <div class="about-box">
+                <div class="boxs d-f">
+                    <div class="box-1-2 d-f">
+                        <div class="box1 d-f box-item">
+                            <i class="bx bxs-phone-call"></i>
+                            <h4>پشتیبانی</h4>
+                            <p>087-36355787</p>
+                        </div>
+                        <div class="box2 d-f box-item">
+                            <i class="bx bxs-phone-call"></i>
+                            <h4>ایمیل</h4>
+                            <p>EmailAddress@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="box3 d-f box-item">
+                        <i class="bx bxs-phone-call"></i>
+                        <h4>آدرس</h4>
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده </p>
+                    </div>
+                    <a class="btn btn-blue" href="/">بازگشت به صحفه ورود</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('./includes/foot.ejs') -%>
