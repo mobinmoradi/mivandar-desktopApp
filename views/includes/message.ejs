@@ -1,0 +1,8 @@
+<div class="messageBox" id="messageBox" >
+    <% if(messages) messages.forEach((message)=>{ %>
+        <div class=" message <% if(message.type ==='Successful'){ %><%= 'Successful' %><% } %>   " >
+            <i class='bx bx-x' onclick="this.parentElement.style.display = 'none';" ></i>
+            <p><%= message.message  %> </p>
+        </div>
+    <% }) %>
+</div>

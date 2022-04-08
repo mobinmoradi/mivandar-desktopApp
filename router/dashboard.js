@@ -5,9 +5,9 @@ const express = require('express')
 
 const router = express.Router()
 
-
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 router.get('/', (req, res) => {
-    res.render(path.join(__dirname, '..', 'views', 'Dashboard.ejs'),{role:req.body.userName})
+    res.render(path.join(__dirname, '..', 'views', 'Dashboard.ejs'),{user:req.body})
 })
 
 

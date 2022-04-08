@@ -10,7 +10,8 @@
         <div class="background"></div>
         <div class="login-1">
             <div class="logo">
-                <div class="d-f"><img src="img/icon.png">
+                <div class="d-f">
+                    <img src="img/icon.png">
                     <h2 class="pe-1 text-logo">میواندار</h2>
                 </div>
                 <p class="under-logo">سامانه مدیریت رزرواسیون مهمانسرا</p>
@@ -35,13 +36,8 @@
                     <button type="submit" class="btn btn-blue " >ورود</button>
                 </div>
             </form>
-            <div class="test">
-                <% if(errors) errors.forEach((error)=>{ %>
-                    <h3>
-                        <%= error.message %>
-                    </h3>
-                    <% }) %>
-            </div>
+            <%- include('./includes/message.ejs')  -%> 
+
 
         </div>
         <div class="logo-phone"><a href="/about"><i class="bx bxs-phone-call"></i></a></div>

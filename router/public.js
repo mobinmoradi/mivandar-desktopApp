@@ -4,13 +4,14 @@ const express = require('express')
 
 const login = require('../controllers/login');
 const {User} = require('../models/user');
+const {sequelize} = require('../config/db')
 
 
 const router = express.Router()
 
 
 router.get('/', (req, res) => {
-    res.render(path.join(__dirname, '..', 'views', 'index.ejs'),{errors:[],userName:""})
+    res.render(path.join(__dirname, '..', 'views', 'index.ejs'),{messages:[],userName:""})
 })
 // define the about route
 router.get('/about', (req, res) => {
@@ -21,10 +22,10 @@ router.post('/login',login.loginController)
 
 
 router.get('/test',async(req,res)=>{
-    
+    await sequelize.sync();
     await User.create({
-        firstName:"برنامه ",
-        lasttName:"نویس",
+        firstName:"حبیب الله ",
+        lasttName:"حبیبی",
         role:"admin",
         callNumber:"09181234567",
         userName:"user1",
@@ -39,8 +40,8 @@ router.get('/test',async(req,res)=>{
         password:"12345"
     })
     await User.create({
-        firstName:"kimia",
-        lasttName:"sayar",
+        firstName:"کیمیا",
+        lasttName:"سیار",
         role:"clerk",
         callNumber:"09181234567",
         userName:"user3",
