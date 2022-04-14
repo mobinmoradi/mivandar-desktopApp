@@ -39,15 +39,22 @@ const loginController = (req, res) => {
                     userName: req.body.userName
                 }
             })
-            if(!user){
-                const error = [{type:'failure',  message: 'نام کاربری یا رمز عبور اشتباه می باشد!' }]
+            if (!user) {
+                const error = [{ type: 'failure', message: 'نام کاربری یا رمز عبور اشتباه می باشد!' }]
                 res.render("index", { messages: error, userName: req.body.userName })
-            }else{
-                let  messages=[{
-                    type:'Successful',
-                    message:`${user.firstName} عزیز، شما با موفقیت وارد شدید!`
-                }]
-               res.render(path.join(__dirname, '..', 'views', 'Dashboard.ejs'), {messages, user }) 
+            } else {
+                if (user.password === req.body.password) {
+                    let messages = [{
+                        type: 'Successful',
+                        message: `${user.firstName} عزیز، شما با موفقیت وارد شدید!`
+                    }]
+                    res.render(path.join(__dirname, '..', 'views', 'Dashboard.ejs'), { messages, user })
+                } else {
+                    const error = [{ type: 'failure', message: 'نام کاربری یا رمز عبور اشتباه می باشد!' }]
+                    res.render("index", { messages: error, userName: req.body.userName })
+                }
+
+
             }
         })();
     }
