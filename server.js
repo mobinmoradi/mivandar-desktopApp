@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 
 const publicRoutes = require('./router/public.js');
 const dashboardRoutes = require('./router/dashboard.js');
+const uidev = require('./router/uidev.js');
 
 const app = express()
 
@@ -19,8 +20,9 @@ app.use(express.static(path.join(__dirname, 'node_modules', 'boxicons')))
 
 
 //routs
-app.use('/', publicRoutes.router)
-app.use('/dashboard', dashboardRoutes.router)
+app.use('/test', uidev.router)
+//app.use('/', publicRoutes.router)
+//app.use('/dashboard', dashboardRoutes.router)
 
 
 app.listen(3000, () => {
