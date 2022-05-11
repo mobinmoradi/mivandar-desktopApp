@@ -12,7 +12,7 @@
 body{
     overflow-x: hidden;
     width: 100%;
-    
+    margin: 0;
     direction: rtl;
     font-family: "Vazir", Arial, Helvetica, sans-serif;}
 :root {
@@ -22,6 +22,7 @@ body{
     --logotext-color: #232D42;
     --boldtext-color: #000000;
     --graytext-color: #8A92A6;
+    --grayline-color: #ebebeb;
     --redwarning-color: #C03221;
     --orange-warning-color: #F6A300;
   }
