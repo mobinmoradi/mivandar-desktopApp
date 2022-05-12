@@ -22,7 +22,8 @@ body{
     --logotext-color: #232D42;
     --boldtext-color: #000000;
     --graytext-color: #8A92A6;
-    --grayline-color: #ebebeb;
+    --grayline-color: #e0e0ff;
+    --graybg-color:#ececf1;
     --redwarning-color: #C03221;
     --orange-warning-color: #F6A300;
   }
@@ -59,22 +60,25 @@ ps-1{padding-left:.5rem ;}
 
 a{text-decoration: none;}
 .btn{
-    min-width: 100px;
     padding:.5rem 2rem  .5rem 2rem;
-    size: 1rem;
-    margin-top: 2rem;
     display: block;   
     font-family: "Vazir", Arial, Helvetica, sans-serif;
 }
 .btn-blue{
     background-color: var(--blue-color);
+
+}
+.btn-sm{
+    padding:.3rem 1rem  .3rem 1rem;
+    font-size: .8rem;
     color: white;
-    border:1px solid var(--blue-color) ;
     border-radius: 5px; 
+}
+.btn-red:hover{
+    background-color:rgb(207, 47, 47);
 }
 .btn-blue:hover{
     background-color: var(--hoverblue-color);
-    border:1px solid var(--hoverblue-color);
 }
 .under{
     width: 100%;

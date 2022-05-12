@@ -1,7 +1,15 @@
 <%- include('./includes/head.ejs') -%>
-<%- include('./includes/header.ejs') -%>
-<%- include('./includes/side.ejs') -%>
-<div>
-    
+<div class="fixed w-full h-50">
+    <%- include('./includes/header.ejs') -%><%- include('./includes/side.ejs') -%>
 </div>
-<%- include('./includes/foot.ejs') -%>
+
+<%- include('./includes/header.ejs') -%>
+    <div class="flex align-start ">
+        <%- include('./includes/side.ejs') -%>
+        <div class=" min-h-full w-full pr-20">
+            <div class="bg-dash absolute "> </div>
+            <%- include('./includes/table.ejs') -%>
+            <%- include('./includes/table.ejs') -%>
+        </div>
+    </div>
+<%- include('./includes/foot.ejs') -%> 

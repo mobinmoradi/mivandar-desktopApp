@@ -7,6 +7,7 @@
     "dev": "nodemon -e ejs,js,css server.js"
   },
   "dependencies": {
+    "@majidh1/jalalidatepicker": "^0.5.2",
     "body-parser": "^1.19.2",
     "boxicons": "^2.1.2",
     "ejs": "^3.1.6",
