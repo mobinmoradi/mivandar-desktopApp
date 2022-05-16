@@ -20,11 +20,15 @@ app.use(express.static(path.join(__dirname, 'node_modules', 'boxicons')))
 
 
 //routs
-app.use('/test', uidev.router)
+
 //app.use('/', publicRoutes.router)
-//app.use('/dashboard', dashboardRoutes.router)
-
-
+//
+app.use('/test', uidev.router)
+app.use('/public',publicRoutes.router)
+app.use('/dashboard', dashboardRoutes.router)
+app.on('/',(req,res)=>{
+    res.redirect('/public/index');
+})
 app.listen(3000, () => {
     console.log("The server is running on port :3000!")
 })

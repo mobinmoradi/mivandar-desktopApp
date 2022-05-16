@@ -10,16 +10,16 @@
         <div class="background"></div>
         <div class="login-1">
             <div class="logo">
-                <div class="d-f">
-                    <img src="img/icon.png">
+                <div class="flex">
+                    <img src="../img/icon.png">
                     <h2 class="pe-1 text-logo">میواندار</h2>
                 </div>
                 <p class="under-logo">سامانه مدیریت رزرواسیون مهمانسرا</p>
             </div>
 
             <form action="/login" method="post">
-                <div class="text-center">
-                    <h2>ورود</h2>
+                <div class="w-full">
+                    <h2 class="text-center f-b" >ورود</h2>
                 </div>
                 <div>
                     <p class="mt-3">برای اتصال به سیستم وارد شوید.</p>
@@ -27,19 +27,19 @@
                         <label class="required" for="input-text">نام کاربری</label>
 
 
-                        <input type="text" autofocus class="mt-2" id="input-text" name="userName" <% if(userName !=""){ %> value=<%= userName %><% } %>  >
+                        <input type="text" autofocus class="mt-2" id="input-text" name="userName"   ><!-- if(userName !=""){ %> value= userName %> } %>-->
                     </div>
                     <div class="mt-3">
                         <label class="required" for="input-password">کلمه عبور</label>
                         <input type="password" class="mt-2" id="input-password" name="password" value="">
                     </div>
-                    <button type="submit" class="btn btn-blue " >ورود</button>
+                    <button type="submit" class="btn btn-blue btn-big mt-20" >ورود</button>
                 </div>
             </form>
             <%- include('./includes/message.ejs')  -%> 
 
 
         </div>
-        <div class="logo-phone"><a href="/about"><i class="bx bxs-phone-call"></i></a></div>
+        <div class="logo-phone"><a href="/public/about"><i class="bx bxs-phone-call "></i></a></div>
     </div>
     <%- include('./includes/foot.ejs') -%>

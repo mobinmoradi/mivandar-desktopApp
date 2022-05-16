@@ -68,6 +68,13 @@ a{text-decoration: none;}
     background-color: var(--blue-color);
 
 }
+.btn-big{
+    padding:.5rem 2rem  .5rem 2rem;
+    font-size: 1rem;
+    color: white;
+    border-radius: 5px; 
+    border: none;
+}
 .btn-sm{
     padding:.3rem 1rem  .3rem 1rem;
     font-size: .8rem;
