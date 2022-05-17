@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 
 const publicRoutes = require('./router/public.js');
 const dashboardRoutes = require('./router/dashboard.js');
+const usersRoutes = require('./router/users.js');
 const uidev = require('./router/uidev.js');
 
 const app = express()
@@ -23,12 +24,13 @@ app.use(express.static(path.join(__dirname, 'node_modules', 'boxicons')))
 
 //app.use('/', publicRoutes.router)
 //
-app.use('/test', uidev.router)
+//app.use('/test', uidev.router)
 app.use('/public',publicRoutes.router)
 app.use('/dashboard', dashboardRoutes.router)
-app.on('/',(req,res)=>{
+app.use('/users',usersRoutes.router)
+app.get('/',(req,res)=>{
     res.redirect('/public/index');
 })
 app.listen(3000, () => {
-    console.log("The server is running on port :3000!")
+    console.log("The server is running on port: 3000")
 })

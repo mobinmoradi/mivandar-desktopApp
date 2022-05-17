@@ -39,7 +39,7 @@ const loginController = (req, res) => {
                     userName: req.body.userName
                 }
             })
-            if (!user) {
+            if(!user) {
                 const error = [{ type: 'failure', message: 'نام کاربری یا رمز عبور اشتباه می باشد!' }]
                 res.render("index", { messages: error, userName: req.body.userName })
             } else {

@@ -1,0 +1,69 @@
+<!--Required data:  -->
+<!--job   -->
+
+<%- include('./includes/head.ejs') -%>
+    <div class="fixed w-full h-50">
+        <%- include('./includes/header.ejs') -%>
+            <%- include('./includes/side.ejs') -%>
+    </div>
+
+    <%- include('./includes/header.ejs') -%>
+        <div class="flex align-start ">
+            <%- include('./includes/side.ejs') -%>
+                <div class=" min-h-full w-full pr-20">
+                    <div class="bg-dash absolute "> </div>
+                    <div class="bg-white m-table br-8 p-20">
+                        <div class="flex ju-sb ">
+                            <h3> <%= job %></h3>
+
+                        </div>
+
+                        <form class="form" method="post"  action="/users/new" autocomplete="off">
+                            <div class=" input">
+                                <label for="fname" class="required">نام:</label><br>
+                                <input name="fname" type="text">
+                            </div>
+                            <div class=" input">
+                                <label class="required" for="lname">نام خانوادگی:</label><br>
+                                <input name="lname" type="text">
+                            </div>
+                            <div class=" input">
+                                <label class="required" for="role">نقش:</label><br>
+
+                                <select name="role">
+                                    <option value="کاربر">کاربر</option>
+                                    <option value="ادمین پشتیبان">ادمین پشتیبان</option>
+                                  </select>
+                            </div>
+                            <div class=" input">
+                                <label class="required" for="nid">کد ملی:</label><br>
+                                <input name="nid" type="text">
+                            </div>
+                            <div class=" input">
+                                <label class="required" for="phone">شماره تماس:</label><br>
+                                <input name="phone" type="tel">
+                            </div>
+                            <div class="input"></div>
+                            <div class="dash"></div>
+                            <div class=" input">
+                                <label class="required" for="userName">نام کاربری:</label><br>
+                                <input name="userName" type="text">
+                            </div>
+                            <div class=" input">
+                                <label class="required" for="password"> رمز عبور:</label><br>
+                                <input name="password" type="password">
+                            </div>
+                            <div class=" input">
+                                <label class="required" for="passwordre">  تکرار رمز عبور:</label><br>
+                                <input name="passwordre" type="password">
+                            </div>
+                            <div class="flex ltr w-full">
+                                <input class="btn m-submit  btn-blue btn-sm" type="submit" value="افزودن">
+                                <a class="btn m-submit btn-red bg-red btn-sm" href="#">انصراف</a>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+        </div>
+        <%- include('./includes/foot.ejs') -%>

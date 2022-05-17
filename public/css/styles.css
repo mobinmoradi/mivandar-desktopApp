@@ -123,14 +123,13 @@ a{text-decoration: none;}
 .login-1 .d-f img{
    width: 9%;
 }
-.login-1 form  input{
+.login-1 form  input ,select{
   width: 100%;
   border: .5px solid var(--blue-color);
   border-radius: 3px;
   font-size: 1rem;
   min-width: 200px;
   padding: 3%;
-  direction: ltr;
 }
 .login form  label{
     padding-right: .3rem;

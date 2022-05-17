@@ -108,7 +108,7 @@
 
 
 .m-table{
-    margin: 75px 5%;
+    margin: 75px 8%;
 }
 .m-submit{
     margin:30px 0 10px 5%;
@@ -214,6 +214,12 @@ td>i{
 }
 .text-center{
     text-align: center;
+}
+.dash{
+    margin-top: 20px;
+    width: 95%;
+     background-color:  var( --graybg-color);
+     height: 2px;
 }
 
 
