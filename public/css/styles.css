@@ -87,17 +87,7 @@ a{text-decoration: none;}
 .btn-blue:hover{
     background-color: var(--hoverblue-color);
 }
-.under{
-    width: 100%;
-    height: 100%;
- 
-    background-image: url("../img/loginBackground.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    z-index: -2;
-}
+
 
  .background{
     width: 50%;
@@ -123,7 +113,7 @@ a{text-decoration: none;}
 .login-1 .d-f img{
    width: 9%;
 }
-.login-1 form  input ,select{
+.login-1 form  input{
   width: 100%;
   border: .5px solid var(--blue-color);
   border-radius: 3px;
@@ -131,6 +121,8 @@ a{text-decoration: none;}
   min-width: 200px;
   padding: 3%;
 }
+
+
 .login form  label{
     padding-right: .3rem;
     color: var(--graytext-color);

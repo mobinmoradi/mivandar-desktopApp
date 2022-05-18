@@ -16,10 +16,6 @@ const Room = sequelize.define('Room', {
         type:DataTypes.STRING,
         allowNull:false
     },
-    bedNumber:{
-        type:DataTypes.NUMBER,
-        allowNull:false
-    },
     cost:{
         type:DataTypes.NUMBER,
         allowNull:false

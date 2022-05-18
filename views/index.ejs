@@ -3,6 +3,18 @@
         body {
             overflow: hidden;
         }
+
+        .under {
+            width: 100%;
+            height: 100%;
+
+            background-image: url("../img/bg<%=bg%>.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            z-index: -2;
+        }
     </style>
 
     <div class="login d-f">
@@ -17,9 +29,9 @@
                 <p class="under-logo">سامانه مدیریت رزرواسیون مهمانسرا</p>
             </div>
 
-            <form action="/login" method="post">
+            <form action="/users/new" method="post">
                 <div class="w-full">
-                    <h2 class="text-center f-b" >ورود</h2>
+                    <h2 class="text-center f-b">ورود</h2>
                 </div>
                 <div>
                     <p class="mt-3">برای اتصال به سیستم وارد شوید.</p>
@@ -27,16 +39,17 @@
                         <label class="required" for="input-text">نام کاربری</label>
 
 
-                        <input type="text" autofocus class="mt-2" id="input-text" name="userName"   ><!-- if(userName !=""){ %> value= userName %> } %>-->
+                        <input type="text" autofocus class="mt-2" id="input-text" name="userName">
+                        <!-- if(userName !=""){ %> value= userName %> } %>-->
                     </div>
                     <div class="mt-3">
                         <label class="required" for="input-password">کلمه عبور</label>
                         <input type="password" class="mt-2" id="input-password" name="password" value="">
                     </div>
-                    <button type="submit" class="btn btn-blue btn-big mt-20" >ورود</button>
+                    <button type="submit" class="btn btn-blue btn-big mt-20">ورود</button>
                 </div>
             </form>
-            <%- include('./includes/message.ejs')  -%> 
+            <%- include('./includes/message.ejs') -%>
 
 
         </div>

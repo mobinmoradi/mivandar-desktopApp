@@ -7,13 +7,14 @@ const server = require('./server');
 
 app.on('ready', function() {
   mainWindow = new BrowserWindow({
-    width: 1000,
-    height: 600,
+    width: 1100,
+    height: 650,
+    titleBarStyle: 'customButtonsOnHover',
     autoHideMenuBar: true,
     useContentSize: true,
     resizable: true,
-    minHeight:600,
-    minWidth:1000,
+    minHeight:650,
+    minWidth:1100,
     icon:path.join(__dirname,'public','img','icon.png')
   });
   mainWindow.loadURL('http://localhost:3000/');

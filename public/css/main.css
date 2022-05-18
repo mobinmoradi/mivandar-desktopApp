@@ -204,9 +204,14 @@ td>i{
     margin:20px 5px 0 5px;
 
 }
-.input input{
+input:focus{
+    outline: unset;
+    outline:2px  var(--blue-color);
+}
+.input input,select{
     width: 85%;
-    font-weight: 700;
+    font-weight: bold;
+    font-size: medium;
     padding: 7px 10px;
     margin-top: 5px;
     -webkit-appearance: auto;

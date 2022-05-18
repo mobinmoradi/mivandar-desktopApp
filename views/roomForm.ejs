@@ -1,0 +1,55 @@
+<!--Required data:  -->
+<!--job   -->
+
+<%- include('./includes/head.ejs') -%>
+    <div class="fixed w-full h-50">
+        <%- include('./includes/header.ejs') -%>
+            <%- include('./includes/side.ejs') -%>
+    </div>
+
+    <%- include('./includes/header.ejs') -%>
+        <div class="flex align-start ">
+            <%- include('./includes/side.ejs') -%>
+                <div class=" min-h-full w-full pr-20">
+                    <div class="bg-dash absolute "> </div>
+                    <div class="bg-white m-table br-8 p-20">
+                        <div class="flex ju-sb ">
+                            <h3> <%= job %></h3>
+
+                        </div>
+
+                        <form class="form" method="post"  action="/rooms/new" autocomplete="off">
+                            <div class=" input">
+                                <label for="name" class="required">نام:</label><br>
+                                <input name="name" type="text">
+                            </div>
+                            <div class=" input">
+                                <label class="required" for="description">توضیحات:</label><br>
+                                <input name="description" type="text">
+                            </div>
+                            <div class=" input">
+                                <label class="required" for="type">نوع اتاق:</label><br>
+                                <select name="type">
+                                    <option value="یک تخته">یک تخته</option>
+                                    <option value="دو تخته">دو تخته</option>
+                                    <option value="دو تخته VIP">دو تخته VIP</option>
+                                    <option value="پنت هاوس">پنت هاوس</option>
+                                    <option value="اتاق کنفرانس">اتاق کنفرانس</option>
+                                    <option value="تالار">تالار</option>
+                                    <option value=" سالن آمفی تئاتر"> سالن آمفی تئاتر</option>
+                                  </select>
+                            </div>
+                            <div class=" input">
+                                <label class="required" for="cost">اجاره پایه:</label><br>
+                                <input name="cost" type="number">
+                            </div>
+                            <div class="flex ltr w-full">
+                                <input class="btn m-submit  btn-blue btn-sm" type="submit" value="افزودن">
+                                <a class="btn m-submit btn-red bg-red btn-sm" href="#">انصراف</a>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+        </div>
+        <%- include('./includes/foot.ejs') -%>

@@ -6,7 +6,9 @@ const bodyParser = require('body-parser');
 const publicRoutes = require('./router/public.js');
 const dashboardRoutes = require('./router/dashboard.js');
 const usersRoutes = require('./router/users.js');
-const uidev = require('./router/uidev.js');
+const roomsRoutes = require('./router/rooms.js');
+const resRoutes = require('./router/res.js');
+
 
 const app = express()
 
@@ -21,13 +23,13 @@ app.use(express.static(path.join(__dirname, 'node_modules', 'boxicons')))
 
 
 //routs
-
-//app.use('/', publicRoutes.router)
-//
-//app.use('/test', uidev.router)
 app.use('/public',publicRoutes.router)
 app.use('/dashboard', dashboardRoutes.router)
 app.use('/users',usersRoutes.router)
+app.use('/rooms',roomsRoutes.router)
+app.use('/res',resRoutes.router)
+
+
 app.get('/',(req,res)=>{
     res.redirect('/public/index');
 })

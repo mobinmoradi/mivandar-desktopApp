@@ -27,7 +27,7 @@ const Reservation = sequelize.define('Reservation', {
      type:DataTypes.STRING,
      allowNull:false
     },
-    roomId:{
+    roomName:{
         type:DataTypes.STRING,
         allowNull:false
     },
@@ -58,6 +58,10 @@ const Reservation = sequelize.define('Reservation', {
         type:DataTypes.NUMBER,
         allowNull:false,
         defaultValue:0
+    },
+    payMethod:{
+        type:DataTypes.STRING,
+        allowNull:false
     },
     resStatus:{
         type:DataTypes.STRING,

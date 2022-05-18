@@ -7,7 +7,7 @@ const User = sequelize.define('User', {
         type:DataTypes.STRING,
         allowNull:false
     },
-    lasttName:{
+    lastName:{
         type:DataTypes.STRING,
         allowNull:false
     },
@@ -31,8 +31,11 @@ const User = sequelize.define('User', {
         type:DataTypes.STRING,
         allowNull:false
     }
-
+   
 });
+(async () => {
+    await sequelize.sync();
+})();
 
 module.exports = {User}
 
