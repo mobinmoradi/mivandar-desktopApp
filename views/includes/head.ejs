@@ -9,9 +9,16 @@
     <link rel="stylesheet" href="../css/main.css">
     <link type="text/css" rel="stylesheet" href="../css/jalalidatepicker.min.css" />
     <script type="text/javascript" src="../js/jalalidatepicker.min.js"></script>
+    <script src="../js/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="../css/sweetalert2.min.css">
     <script src="../js/timer.js"></script>
     <link rel="stylesheet" href="../css/boxicons.min.css">
     <title> mivandar</title>
 </head>
 
-<body class="bg-gray" onload=display_ct();>
+<body class="bg-gray" onload=loads()>
+    <div class="hidden">
+        <span id="icon"><%= statusAlert %></span>
+        <span id="title"><%= alert%></span>
+    </div>
+    <%- include('./functions.ejs') -%>

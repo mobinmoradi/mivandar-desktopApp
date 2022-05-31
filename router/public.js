@@ -12,11 +12,15 @@ const router = express.Router()
 
 router.get('/index', (req, res) => {
     let bg = Math.ceil(Math.random() * 10);
-    res.render(path.join(__dirname, '..', 'views', 'index.ejs'),{bg,messages:[],userName:""})
+    res.render(path.join(__dirname, '..', 'views', 'index.ejs'),{bg,userName:"",job: 'افزودن کاربر',
+    alert: '',
+    statusAlert:''})
 })
 
 router.get('/about', (req, res) => {
-    res.render(path.join(__dirname, '..', 'views', 'about.ejs'))
+    res.render(path.join(__dirname, '..', 'views', 'about.ejs'),{job: 'افزودن کاربر',
+    alert: '',
+    statusAlert:''})
 })
 
 router.post('/login',login.loginController)

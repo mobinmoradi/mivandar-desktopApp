@@ -226,7 +226,9 @@ input:focus{
      background-color:  var( --graybg-color);
      height: 2px;
 }
-
+.hidden{
+    display: none;
+}
 
 
 

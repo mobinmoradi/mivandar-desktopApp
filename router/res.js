@@ -10,7 +10,9 @@ const router = express.Router()
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 router.get('/new', (req, res) => {
     res.render(path.join(__dirname, '..', 'views', 'resForm.ejs'), {
-        job: 'رزرو جدید'
+        job: 'رزرو جدید',job: 'افزودن کاربر',
+        alert: '',
+        statusAlert:''
     })
 })
 
