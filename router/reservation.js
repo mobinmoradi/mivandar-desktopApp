@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express')
 
 
-const resController =require('../controllers/res');
+const resController =require('../controllers/reservation');
 
 const router = express.Router()
 

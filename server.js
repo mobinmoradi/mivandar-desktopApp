@@ -7,7 +7,7 @@ const publicRoutes = require('./router/public.js');
 const dashboardRoutes = require('./router/dashboard.js');
 const usersRoutes = require('./router/users.js');
 const roomsRoutes = require('./router/rooms.js');
-const resRoutes = require('./router/res.js');
+const resRoutes = require('./router/reservation.js');
 
 
 const app = express()
@@ -27,7 +27,7 @@ app.use('/public',publicRoutes.router)
 app.use('/dashboard', dashboardRoutes.router)
 app.use('/users',usersRoutes.router)
 app.use('/rooms',roomsRoutes.router)
-app.use('/res',resRoutes.router)
+app.use('/reservation',resRoutes.router)
 
 
 app.get('/',(req,res)=>{

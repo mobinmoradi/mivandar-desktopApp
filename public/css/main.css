@@ -208,8 +208,17 @@ input:focus{
     outline: unset;
     outline:2px  var(--blue-color);
 }
-.input input,select{
+.input input{
     width: 85%;
+    font-weight: bold;
+    font-size: medium;
+    padding: 7px 10px;
+    margin-top: 5px;
+    -webkit-appearance: auto;
+    border:1px solid var(--blue-color);
+}
+select{
+    width: calc(85% + 22px);
     font-weight: bold;
     font-size: medium;
     padding: 7px 10px;

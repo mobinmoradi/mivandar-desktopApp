@@ -18,14 +18,14 @@
 
                         </div>
 
-                        <form class="form" method="post"  action="/res/new" autocomplete="off">
+                        <form class="form" method="post"  action="/reservation/new" autocomplete="off">
                             <div class=" input">
                                 <label for="fname" class="required">نام:</label><br>
                                 <input name="fname" type="text">
                             </div>
                             <div class=" input">
                                 <label class="required" for="lname" >نام خانوادگی:</label><br>
-                                <input name="lname" type="text" required>
+                                <input name="lname" type="text" >
                             </div>
                             <div class=" input">
                                 <label class="required" for="gender">جنسیت:</label><br>
@@ -36,7 +36,7 @@
                             </div>
                             <div class=" input">
                                 <label class="required" for="nid">کد ملی:</label><br>
-                                <input name="nid" type="text">
+                                <input name="nid" type="number">
                             </div>
                             <div class=" input">
                                 <label class="required" for="phone">شماره تماس:</label><br>
@@ -51,7 +51,7 @@
                                 <input name="roomName" type="text">
                             </div>
                             <div class=" input">
-                                <label class="required" for="resType">نوع خدمات:</label><br>
+                                <label class="required" for="ressType">نوع خدمات:</label><br>
                                 <select name="resType">
                                     <option value="فقط صبحانه">فقط صبحانه</option>
                                     <option value="هر سه وعده">هر سه وعده</option>
@@ -70,13 +70,13 @@
                                 <input name="pNum" type="number">
                             </div>
                             <div class=" input">
-                                <label class="required" for="description">توضیحات:</label><br>
+                                <label class="" for="description">توضیحات:</label><br>
                                 <input name="description" type="text">
                             </div>
                             <div class="dash"></div>
                             <div class=" input">
                                 <label class="required" for="totalPay">حق اجاره:</label><br>
-                                <input name="totalPay" type="number" disabled>
+                                <input name="totalPay" type="number"  >
                             </div>
 
                             <div class=" input">
