@@ -8,16 +8,11 @@ const resController =require('../controllers/reservation');
 const router = express.Router()
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-router.get('/new', (req, res) => {
-    res.render(path.join(__dirname, '..', 'views', 'resForm.ejs'), {
-        job: 'رزرو جدید',job: 'افزودن کاربر',
-        alert: '',
-        statusAlert:''
-    })
-})
+router.get('/new', resController.getForm)
 
 router.post('/new', resController.newRes)
 
+router.get('/main',resController.main)
 
 
 

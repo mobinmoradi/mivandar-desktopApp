@@ -48,23 +48,27 @@
 .line-h{
     line-height: 1rem;
 }
-.w-13d{
-    width: 13.5%;
+.w-14d{
+    width: 14%;
 }
 .p-20{
-    padding:10px 20px ;
+    padding:10px 10px ;
+}
+.px-10{
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .b-b{
     border-bottom: 1px solid var(--grayline-color);
 }
 
 .py-5{
-    padding-top: 6px ;
-    padding-bottom: 6px;
+    padding-top: 8px ;
+    padding-bottom: 8px;
 }
 .my-5{
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
 .m-25{
     margin: 25px 0;
@@ -87,14 +91,17 @@
 
 }
 .bg-dash{
+    left: 1px;
     height:100px;
-    width: 84vw;
+    width: 84.5vw;
     background: linear-gradient(180deg, rgb(158, 172, 255) 0%, rgb(55, 80, 206) 100%);
     border-radius: 0 0 16px 16px;
 }
 .hoverPages:hover{
-    color: var(--hoverblue-color);
+    background-color:var(--hoverblue-color) ;
+    color: var(--blue-color);
     cursor: pointer;
+    border-radius: 4px;
 }
 
 .shadow{
@@ -118,6 +125,10 @@
 }
 .br-8{
     border-radius: 8px;
+}
+a:-webkit-any-link {
+    color: currentColor;
+    cursor: pointer;
 }
 tbody>tr:nth-child(even){
     background-color: var(--graybg-color);
@@ -237,6 +248,11 @@ select{
 }
 .hidden{
     display: none;
+}
+.select{
+    background-color: var(--blue-color) !important;
+    color: #fff !important;
+    border-radius: 4px;
 }
 
 

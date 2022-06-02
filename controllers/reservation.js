@@ -4,6 +4,7 @@ const Validator = require("fastest-validator");
 let moment = require('jalali-moment');
 
 const { Reservation } = require('../models/reservation');
+const { Room } = require('../models/room');
 
 
 const v = new Validator({
@@ -66,20 +67,29 @@ const schema = {
         type: "string",
     },
     Paid: {
-        type: "string",
-        custom: (v, errors) => {
-            const re = "^[0-9]*$";
-            if (v.search(re) == -1) errors.push({ type: "pay" })
-            return v;
-        }
+        type: "string"
     },
     payMethod: {
         type: "string",
         min: 1,
     }
 };
+
+async function Roomlist() {
+    let rooms;
+    try {
+        rooms = await Room.findAll({ attributes: ['name'] })
+    } catch (error) {
+        console.log(error);
+    }
+    let roomsName = rooms.map((value) => {
+        return value.dataValues.name
+    })
+    return roomsName
+}
+
 const newRes = async (req, res) => {
-    console.log(moment.from(req.body.enter, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'));
+    let roomslist = await Roomlist();
     let validate
     try {
         const check = v.compile(schema);
@@ -90,14 +100,69 @@ const newRes = async (req, res) => {
     }
     console.log(validate);
 
+
+    if (validate === true) {
+        let reserve = req.body;
+        let roomExist;
+        try {
+            roomExist = await Room.findOne({ where: { name: reserve.roomName.trim() } })
+        } catch (error) {
+            console.log(error);
+        }
+        if (!roomExist) {
+            res.render(path.join(__dirname, '..', 'views', 'resForm.ejs'), {
+                job: 'رزرو جدید',
+                alert: 'اتاقی با این نام ثبت نشده است!',
+                statusAlert: 'error',
+                rooms: roomslist,
+                location:'reservation'
+            })
+        }
+
+        res.render(path.join(__dirname, '..', 'views', 'resForm.ejs'), {
+            job: 'رزرو جدید',
+            alert: 'ok ',
+            statusAlert: 'info',
+            rooms: roomslist,
+            location:'reservation'
+        })
+    } else {
+        if (validate.some((obj) => { return obj.type == 'stringMin' })) {
+            res.render(path.join(__dirname, '..', 'views', 'resForm.ejs'), {
+                job: 'رزرو جدید',
+                alert: ' فیلدهای الزامی نباید خالی باشند! ',
+                statusAlert: 'error',
+                rooms: roomslist,
+                location:'reservation'
+            })
+        }
+    }
+
+
+}
+
+const getForm = async (req, res) => {
+    let roomslist = await Roomlist();
     res.render(path.join(__dirname, '..', 'views', 'resForm.ejs'), {
         job: 'رزرو جدید',
-        alert: 'ok ',
-        statusAlert: 'info'
+        alert: '',
+        statusAlert: '',
+        rooms: roomslist,
+        location:'reservation'
+    })
+}
+
+const main = async (req, res) => {
+    res.render(path.join(__dirname, '..', 'views', 'reservation.ejs'), {
+        alert: '',
+        statusAlert: '',
+        location:'reservation'
     })
 }
 
 
 module.exports = {
-    newRes
+    newRes,
+    getForm,
+    main
 }

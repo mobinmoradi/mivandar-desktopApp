@@ -6,8 +6,12 @@ const express = require('express')
 const router = express.Router()
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-router.get('/', (req, res) => {
-    res.render(path.join(__dirname, '..', 'views', 'Dashboard.ejs'),{user:req.body})
+router.get('/main', (req, res) => {
+    res.render(path.join(__dirname, '..', 'views', 'Dashboard.ejs'),{
+        statusAlert:'success',
+        alert:'کاربر خوش آمدی',
+        location:'dashboard'
+    })
 })
 
 

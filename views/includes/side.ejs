@@ -1,56 +1,78 @@
-<div class="w-13d p-20 bg-white grey h-full f-m side">
+<div class="w-14d  p-20 pl-2 bg-white grey h-full f-m side">
     <div class="b-b">
-        <div class="flex  ju-sb  py-5 my-5 hoverPages">
-            <i class='bx bxs-dashboard'></i>
-            <p class="w-full mx-10">داشبورد</p>
-            <i class='bx bx-chevron-left'></i>
-        </div>
-        <div class="flex  ju-sb  py-5 my-5 hoverPages">
-            <i class='bx bxs-key'></i>
-            <p class="w-full mx-10">رزرواسیون</p>
-            <i class='bx bx-chevron-left'></i>
-        </div>
-        <div class="flex  ju-sb  py-5 my-5 hoverPages">
-            <i class='bx bxs-door-open'></i>
-            <p class="w-full mx-10">اتاق</p>
-            <i class='bx bx-chevron-left'></i>
-        </div>
+        <a href="/dashboard/main">
+            <div class="flex  ju-sb <% if (location=='dashboard') { %>select<% } %> px-10 py-5 my-5 hoverPages">
+                <i class='bx bxs-dashboard'></i>
+                <p class="w-full mx-10">داشبورد</p>
+                <i class='bx bx-chevron-left'></i>
+            </div>
+        </a>
+        <a href="/reservation/main">
+            <div class="flex  ju-sb <% if (location=='reservation') { %>select<% } %> px-10 py-5 my-5 hoverPages">
+                <i class='bx bxs-key'></i>
+                <p class="w-full mx-10">رزرواسیون</p>
+                <i class='bx bx-chevron-left'></i>
+            </div>
+        </a>
+        <a href="/rooms/main">
+            <div class="flex  ju-sb <% if (location=='rooms') { %>select<% } %> px-10  py-5 my-5 hoverPages">
+                <i class='bx bxs-door-open'></i>
+                <p class="w-full mx-10">اتاق</p>
+                <i class='bx bx-chevron-left'></i>
+            </div>
+        </a>
     </div>
     <div class="b-b">
-        <div class="flex  ju-sb  py-5 my-5 hoverPages">
-            <i class='bx bxs-user'></i>
-            <p class="w-full mx-10">کاربران</p>
-            <i class='bx bx-chevron-left'></i>
-        </div>
-        <div class="flex  ju-sb  py-5 my-5 hoverPages">
-            <i class='bx bxs-pie-chart-alt-2'></i>
-            <p class="w-full mx-10">گزارشات</p>
-            <i class='bx bx-chevron-left'></i>
-        </div>
-        <div class="flex  ju-sb  py-5 my-5 hoverPages">
-            <i class='bx bxs-data' ></i>
-            <p class="w-full mx-10">پشتیبان گیری</p>
-            <i class='bx bx-chevron-left'></i>
-        </div>
+        <a href="/users/main">
+            <div class="flex  ju-sb <% if (location=='users') { %>select<% } %> px-10  py-5 my-5 hoverPages">
+                <i class='bx bxs-user'></i>
+                <p class="w-full mx-10">کاربران</p>
+                <i class='bx bx-chevron-left'></i>
+            </div>
+        </a>
+        <a href="#">
+            <div class="flex <% if (location=='status') { %>select<% } %> ju-sb px-10  py-5 my-5 hoverPages">
+                <i class='bx bxs-pie-chart-alt-2'></i>
+                <p class="w-full mx-10">گزارشات</p>
+                <i class='bx bx-chevron-left'></i>
+            </div>
+        </a>
+        <a href="#">
+            <div class="flex <% if (location=='backup') { %>select<% } %> ju-sb px-10 py-5 my-5 hoverPages">
+                <i class='bx bxs-data'></i>
+                <p class="w-full mx-10">پشتیبان گیری</p>
+                <i class='bx bx-chevron-left'></i>
+            </div>
+        </a>
+
+
     </div>
     <div class="b-b">
-        <div class="flex  ju-sb  py-5 my-5 hoverPages">
-            <i class='bx bxs-lock-alt'></i>
-            <p class="w-full mx-10">بازیابی حساب</p>
-            <i class='bx bx-chevron-left'></i>
-        </div>
+        <a href="#">
+            <div class="flex  ju-sb <% if (location=='recovery') { %>select<% } %> px-10 py-5 my-5 hoverPages">
+                <i class='bx bxs-lock-alt'></i>
+                <p class="w-full mx-10">بازیابی حساب</p>
+                <i class='bx bx-chevron-left'></i>
+            </div>
+        </a>
+
     </div>
     <div>
-        <div class="flex  ju-sb  py-5 my-5 hoverPages">
-            <i class='bx bxs-help-circle' ></i>
-            <p class="w-full mx-10">پشتیبانی سامانه</p>
-            <i class='bx bx-chevron-left'></i>
-        </div>
-        <div class="flex  ju-sb  py-5 my-5 hoverPages">
-            <i class='bx bxs-exit'></i>
-            <p class="w-full mx-10 ">خروج</p>
-            <i class='bx bx-chevron-left'></i>
-        </div>
+        <a href="/public/about2">
+            <div class="flex  ju-sb px-10  py-5 my-5 hoverPages">
+                <i class='bx bxs-help-circle'></i>
+                <p class="w-full mx-10">پشتیبانی سامانه</p>
+                <i class='bx bx-chevron-left'></i>
+            </div>
+        </a>
+        <a href="/public/logout">
+            <div class="flex  ju-sb px-10  py-5 my-5 hoverPages">
+                <i class='bx bxs-exit'></i>
+                <p class="w-full mx-10 ">خروج</p>
+                <i class='bx bx-chevron-left'></i>
+            </div>
+        </a>
+
     </div>
 
 </div>

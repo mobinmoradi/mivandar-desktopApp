@@ -59,21 +59,32 @@ const newRoom = async (req, res) => {
         res.render(path.join(__dirname, '..', 'views', 'roomForm.ejs'), {
             job: 'افزودن اتاق',
             alert: 'اطلاعات اتاق با موفقیت ثبت شد!',
-            statusAlert: 'success'
+            statusAlert: 'success',
+            location: 'rooms'
         })
     } else {
         if (validate.some((obj) => { return obj.type == 'stringMin' })) {
             res.render(path.join(__dirname, '..', 'views', 'roomForm.ejs'), {
                 job: 'افزودن کاربر',
                 alert: ' فیلدهای الزامی نباید خالی باشند! ',
-                statusAlert: 'error'
+                statusAlert: 'error',
+                location: 'rooms'
             })
         }
     }
 
 }
 
+const main = async (req, res) => {
+    res.render(path.join(__dirname, '..', 'views', 'rooms.ejs'), {
+        alert: '',
+        statusAlert: '',
+        location: 'rooms'
+    })
+}
+
 
 module.exports = {
-    newRoom
+    newRoom,
+    main
 }

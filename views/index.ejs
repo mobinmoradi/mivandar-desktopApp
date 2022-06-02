@@ -16,6 +16,7 @@
             z-index: -2;
         }
     </style>
+    <div class="hidden"><span class="rtl" id='ct'></span></div>
 
     <div class="login d-f">
         <div class="under"></div>
@@ -29,7 +30,8 @@
                 <p class="under-logo">سامانه مدیریت رزرواسیون مهمانسرا</p>
             </div>
 
-            <form action="/users/new" method="post">
+            <form action="/public/index" method="post">
+                <input type="hidden" name="bg" value="<%=bg%>" >
                 <div class="w-full">
                     <h2 class="text-center f-b">ورود</h2>
                 </div>
@@ -38,8 +40,7 @@
                     <div class="mt-3">
                         <label class="required" for="input-text">نام کاربری</label>
 
-
-                        <input type="text" autofocus class="mt-2" id="input-text" name="userName">
+                        <input type="text" <% if(userName !=""){ %> value= <%=userName %><%   } %>  autofocus class="mt-2" id="input-text" name="userName">
                         <!-- if(userName !=""){ %> value= userName %> } %>-->
                     </div>
                     <div class="mt-3">
@@ -49,8 +50,6 @@
                     <button type="submit" class="btn btn-blue btn-big mt-20">ورود</button>
                 </div>
             </form>
-
-
         </div>
         <div class="logo-phone"><a href="/public/about"><i class="bx bxs-phone-call "></i></a></div>
     </div>

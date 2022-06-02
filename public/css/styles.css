@@ -17,7 +17,8 @@ body{
     font-family: "Vazir", Arial, Helvetica, sans-serif;}
 :root {
     --blue-color: #3A57E8;
-    --hoverblue-color: #586fe0;
+    --hoverblue-color: #bbc6ff;
+    --hoverblue-color2: #5975ff;
     --light-blue-color:rgba(196, 204, 248,29);
     --logotext-color: #232D42;
     --boldtext-color: #000000;
@@ -71,7 +72,7 @@ a{text-decoration: none;}
 .btn-big{
     padding:.5rem 2rem  .5rem 2rem;
     font-size: 1rem;
-    color: white;
+    color: white !important;
     border-radius: 5px; 
     border: none;
 }
@@ -85,7 +86,8 @@ a{text-decoration: none;}
     background-color:rgb(207, 47, 47);
 }
 .btn-blue:hover{
-    background-color: var(--hoverblue-color);
+    background-color: var(--hoverblue-color2);
+    cursor: pointer;
 }
 
 

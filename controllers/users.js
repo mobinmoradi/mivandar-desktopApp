@@ -84,7 +84,8 @@ const newUser = async (req, res) => {
             res.render(path.join(__dirname, '..', 'views', 'userForm.ejs'), {
                 job: 'افزودن کاربر',
                 alert: 'کاربر دیگری با این نام کاربری وجود دارد!',
-                statusAlert: 'error'
+                statusAlert: 'error',
+                location: 'users'
             })
         } else {
             user.password = await bcrypt.hashSync(user.password, await bcrypt.genSaltSync(2));
@@ -106,7 +107,8 @@ const newUser = async (req, res) => {
             res.render(path.join(__dirname, '..', 'views', 'userForm.ejs'), {
                 job: 'افزودن کاربر',
                 alert: 'ثبت کاربر با موفقیت انجام شد',
-                statusAlert: 'success'
+                statusAlert: 'success',
+                location: 'users'
 
             })
         }
@@ -118,21 +120,24 @@ const newUser = async (req, res) => {
             res.render(path.join(__dirname, '..', 'views', 'userForm.ejs'), {
                 job: 'افزودن کاربر',
                 alert: ' فیلدهای الزامی نباید خالی باشند! ',
-                statusAlert: 'error'
+                statusAlert: 'error',
+                location: 'users'
             })
         }
         if (validate.some((obj) => { return obj.type == 'userName' })) {
             res.render(path.join(__dirname, '..', 'views', 'userForm.ejs'), {
                 job: 'افزودن کاربر',
                 alert: 'برای نام کاربری باید از حروف انگلیسی و اعداد و نشانه زیر خط "_" استفاده شود!',
-                statusAlert: 'error'
+                statusAlert: 'error',
+                location: 'users'
             })
         }
         if (validate.some((obj) => { return obj.type == 'stringMin' }) && validate.some((obj) => { return obj.field == 'password' })) {
             res.render(path.join(__dirname, '..', 'views', 'userForm.ejs'), {
                 job: 'افزودن کاربر',
                 alert: ' رمز عبور باید بیشتر یا مساوی از 6 کاراکتر باشد ',
-                statusAlert: 'error'
+                statusAlert: 'error',
+                location: 'users'
             })
         }
 
@@ -142,7 +147,8 @@ const newUser = async (req, res) => {
             res.render(path.join(__dirname, '..', 'views', 'userForm.ejs'), {
                 job: 'افزودن کاربر',
                 alert: ' رمز عبور با تکرار آن برابر نیست! ',
-                statusAlert: 'error'
+                statusAlert: 'error',
+                location: 'users'
             })
         }
 
@@ -150,13 +156,22 @@ const newUser = async (req, res) => {
             res.render(path.join(__dirname, '..', 'views', 'userForm.ejs'), {
                 job: 'افزودن کاربر',
                 alert: 'شماره تماس فقط مقادیر عددی را می پذیرد!',
-                statusAlert: 'error'
+                statusAlert: 'error',
+                location: 'users'
             })
         }
     }
 }
 
+const main = async (req, res) => {
+    res.render(path.join(__dirname, '..', 'views', 'users.ejs'), {
+        alert: '',
+        statusAlert: '',
+        location: 'users'
+    })
+}
 
 module.exports = {
-    newUser
+    newUser,
+    main
 }

@@ -31,7 +31,7 @@ app.use('/reservation',resRoutes.router)
 
 
 app.get('/',(req,res)=>{
-    res.redirect('/users/new');
+    res.redirect('/public/index');
 })
 app.listen(3000, () => {
     console.log("The server is running on port: 3000")
