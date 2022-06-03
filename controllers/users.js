@@ -85,7 +85,11 @@ const newUser = async (req, res) => {
                 job: 'افزودن کاربر',
                 alert: 'کاربر دیگری با این نام کاربری وجود دارد!',
                 statusAlert: 'error',
-                location: 'users'
+                location: 'users',
+                user: {
+                    name: process.env.name,
+                    role: process.env.role
+                }
             })
         } else {
             user.password = await bcrypt.hashSync(user.password, await bcrypt.genSaltSync(2));
@@ -104,11 +108,24 @@ const newUser = async (req, res) => {
             } catch (error) {
                 console.log(error);
             }
-            res.render(path.join(__dirname, '..', 'views', 'userForm.ejs'), {
+            let users;
+            try {
+                users = await User.findAll({
+                    attributes: { exclude: ['password'] }
+                })
+            } catch (error) {
+                console.log(error);
+            }
+            res.render(path.join(__dirname, '..', 'views', 'users.ejs'), {
                 job: 'افزودن کاربر',
                 alert: 'ثبت کاربر با موفقیت انجام شد',
                 statusAlert: 'success',
-                location: 'users'
+                location: 'users',
+                user: {
+                    name: process.env.name,
+                    role: process.env.role
+                },
+                users,
 
             })
         }
@@ -121,7 +138,11 @@ const newUser = async (req, res) => {
                 job: 'افزودن کاربر',
                 alert: ' فیلدهای الزامی نباید خالی باشند! ',
                 statusAlert: 'error',
-                location: 'users'
+                location: 'users',
+                user: {
+                    name: process.env.name,
+                    role: process.env.role
+                }
             })
         }
         if (validate.some((obj) => { return obj.type == 'userName' })) {
@@ -129,7 +150,11 @@ const newUser = async (req, res) => {
                 job: 'افزودن کاربر',
                 alert: 'برای نام کاربری باید از حروف انگلیسی و اعداد و نشانه زیر خط "_" استفاده شود!',
                 statusAlert: 'error',
-                location: 'users'
+                location: 'users',
+                user: {
+                    name: process.env.name,
+                    role: process.env.role
+                }
             })
         }
         if (validate.some((obj) => { return obj.type == 'stringMin' }) && validate.some((obj) => { return obj.field == 'password' })) {
@@ -137,7 +162,11 @@ const newUser = async (req, res) => {
                 job: 'افزودن کاربر',
                 alert: ' رمز عبور باید بیشتر یا مساوی از 6 کاراکتر باشد ',
                 statusAlert: 'error',
-                location: 'users'
+                location: 'users',
+                user: {
+                    name: process.env.name,
+                    role: process.env.role
+                }
             })
         }
 
@@ -148,7 +177,11 @@ const newUser = async (req, res) => {
                 job: 'افزودن کاربر',
                 alert: ' رمز عبور با تکرار آن برابر نیست! ',
                 statusAlert: 'error',
-                location: 'users'
+                location: 'users',
+                user: {
+                    name: process.env.name,
+                    role: process.env.role
+                }
             })
         }
 
@@ -157,17 +190,34 @@ const newUser = async (req, res) => {
                 job: 'افزودن کاربر',
                 alert: 'شماره تماس فقط مقادیر عددی را می پذیرد!',
                 statusAlert: 'error',
-                location: 'users'
+                location: 'users',
+                user: {
+                    name: process.env.name,
+                    role: process.env.role
+                }
             })
         }
     }
 }
 
 const main = async (req, res) => {
+    let users;
+    try {
+        users = await User.findAll({
+            attributes: { exclude: ['password'] }
+        })
+    } catch (error) {
+        console.log(error);
+    }
     res.render(path.join(__dirname, '..', 'views', 'users.ejs'), {
         alert: '',
         statusAlert: '',
-        location: 'users'
+        location: 'users',
+        user: {
+            name: process.env.name,
+            role: process.env.role
+        },
+        users,
     })
 }
 

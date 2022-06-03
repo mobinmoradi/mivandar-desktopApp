@@ -30,6 +30,7 @@ app.use('/rooms',roomsRoutes.router)
 app.use('/reservation',resRoutes.router)
 
 
+
 app.get('/',(req,res)=>{
     res.redirect('/public/index');
 })

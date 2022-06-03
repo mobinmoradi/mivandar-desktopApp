@@ -113,12 +113,19 @@
 
 }
 
-
-.m-table{
-    margin: 75px 8%;
+.m-table1{
+    margin: 75px 5%;
+}
+.m-table2{
+    margin: 75px 10%;
+}
+.m-table3{
+    margin: 75px 5%;
 }
 .m-submit{
     margin:30px 0 10px 5%;
+    border: none;
+
 }
 .mt-20{
     margin-top: 20px;
@@ -137,7 +144,7 @@ th{
     background-color: rgb(197, 197, 197);
 }
 td{
-    text-align: center;
+    text-align: -webkit-center;
 }
 th,td{
     padding: 8px 0;
@@ -254,6 +261,42 @@ select{
     color: #fff !important;
     border-radius: 4px;
 }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 80px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 150%;
+    left: 150%;
+    margin-left: -60px;
+  }
+  
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
 
 
 

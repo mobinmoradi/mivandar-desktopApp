@@ -79,7 +79,7 @@ a{text-decoration: none;}
 .btn-sm{
     padding:.3rem 1rem  .3rem 1rem;
     font-size: .8rem;
-    color: white;
+    color: white !important;
     border-radius: 5px; 
 }
 .btn-red:hover{

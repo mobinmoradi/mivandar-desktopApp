@@ -1,4 +1,5 @@
 const path = require('path');
+const process = require('process');
 
 const express = require('express')
 
@@ -13,7 +14,11 @@ router.get('/new', (req, res) => {
         job: 'افزودن اتاق',
         alert: '',
         statusAlert:'',
-        location:'rooms'
+        location:'rooms',
+        user:{
+            name:process.env.name,
+            role:process.env.role
+        }
     })
 })
 

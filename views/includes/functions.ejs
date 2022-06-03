@@ -1,5 +1,5 @@
 <script>
-    
+
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-start',
@@ -16,9 +16,27 @@
         let icon = document.getElementById('icon').innerText
         let title = document.getElementById('title').innerText
         display_ct();
-        if( title.length>0){
-           Toast.fire({icon ,title}) 
+        if (title.length > 0) {
+            Toast.fire({ icon, title })
         }
     }
 
+    function logout(href) {
+        let path=`/public/${href}`
+        title = href==='logout'?'خروج از سیستم':'هدایت به صفحه درباره ما';
+        swal.fire({
+            icon: 'question',
+            title,
+            text:'با این کار شما از سامانه خارج میشود.آیا میخواهید ادامه بدهید؟',
+            cancelButtonText: 'انصراف',
+            confirmButtonText: 'خروج',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log('result');
+                window.location.href = path;
+            }
+        })
+    }
 </script>

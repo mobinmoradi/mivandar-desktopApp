@@ -1,4 +1,5 @@
 const path = require('path');
+const process = require('process');
 
 const Validator = require("fastest-validator");
 let moment = require('jalali-moment');
@@ -115,7 +116,11 @@ const newRes = async (req, res) => {
                 alert: 'اتاقی با این نام ثبت نشده است!',
                 statusAlert: 'error',
                 rooms: roomslist,
-                location:'reservation'
+                location:'reservation',
+                user:{
+                    name:process.env.name,
+                    role:process.env.role
+                }
             })
         }
 
@@ -124,7 +129,11 @@ const newRes = async (req, res) => {
             alert: 'ok ',
             statusAlert: 'info',
             rooms: roomslist,
-            location:'reservation'
+            location:'reservation',
+            user:{
+                name:process.env.name,
+                role:process.env.role
+            }
         })
     } else {
         if (validate.some((obj) => { return obj.type == 'stringMin' })) {
@@ -133,7 +142,11 @@ const newRes = async (req, res) => {
                 alert: ' فیلدهای الزامی نباید خالی باشند! ',
                 statusAlert: 'error',
                 rooms: roomslist,
-                location:'reservation'
+                location:'reservation',
+                user:{
+                    name:process.env.name,
+                    role:process.env.role
+                }
             })
         }
     }
@@ -148,7 +161,11 @@ const getForm = async (req, res) => {
         alert: '',
         statusAlert: '',
         rooms: roomslist,
-        location:'reservation'
+        location:'reservation',
+        user:{
+            name:process.env.name,
+            role:process.env.role
+        }
     })
 }
 
@@ -156,7 +173,11 @@ const main = async (req, res) => {
     res.render(path.join(__dirname, '..', 'views', 'reservation.ejs'), {
         alert: '',
         statusAlert: '',
-        location:'reservation'
+        location:'reservation',
+        user:{
+            name:process.env.name,
+            role:process.env.role
+        }
     })
 }
 

@@ -12,7 +12,7 @@
             <%- include('./includes/side.ejs') -%>
                 <div class=" min-h-full w-full pr-20">
                     <div class="bg-dash absolute "> </div>
-                    <div class="bg-white m-table br-8 p-20">
+                    <div class="bg-white m-table2 br-8 p-20">
                         <div class="flex ju-sb ">
                             <h3>
                                 <%= job %>
@@ -32,7 +32,8 @@
                             <div class=" input">
                                 <label class="required" for="role">نقش:</label><br>
                                 <select name="role">
-                                    <option value="کاربر">کاربر</option>
+                                    <option value="مهماندار">مهماندار</option>
+                                    <option value="مدیر">مدیر</option>
                                     <option value="ادمین پشتیبان">ادمین پشتیبان</option>
                                 </select>
                             </div>
@@ -60,19 +61,7 @@
                             </div>
                             <div class="flex ltr w-full">
                                 <input class="btn m-submit  btn-blue btn-sm" type="submit" value="افزودن">
-                                <a class="btn m-submit btn-red bg-red btn-sm" onclick="Swal.fire({
-                                    toast: true,
-                                    position: 'top-start',
-                                    text: 'Do you want to continue',
-                                    icon: 'error',
-                                    showConfirmButton: false,
-  timer: 3000,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-                                  })" href="#">انصراف</a>
+                                <a class="btn m-submit btn-red bg-red btn-sm"  href="/users/main">انصراف</a>
                             </div>
                         </form>
 

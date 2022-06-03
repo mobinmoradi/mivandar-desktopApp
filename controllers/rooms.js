@@ -1,6 +1,6 @@
 const path = require('path');
+const process = require('process');
 
-const bcrypt = require('bcryptjs');
 const Validator = require("fastest-validator");
 
 const { Room } = require('../models/room');
@@ -56,19 +56,34 @@ const newRoom = async (req, res) => {
         } catch (error) {
             console.log(error);
         }
-        res.render(path.join(__dirname, '..', 'views', 'roomForm.ejs'), {
+        let rooms;
+        try {
+            rooms = await Room.findAll();
+        } catch (error) {
+            console.log(error);
+        }
+        res.render(path.join(__dirname, '..', 'views', 'rooms.ejs'), {
             job: 'افزودن اتاق',
             alert: 'اطلاعات اتاق با موفقیت ثبت شد!',
             statusAlert: 'success',
-            location: 'rooms'
+            location: 'rooms',
+            user: {
+                name: process.env.name,
+                role: process.env.role
+            },
+            rooms,
         })
     } else {
         if (validate.some((obj) => { return obj.type == 'stringMin' })) {
             res.render(path.join(__dirname, '..', 'views', 'roomForm.ejs'), {
-                job: 'افزودن کاربر',
+                job: 'افزودن اتاق',
                 alert: ' فیلدهای الزامی نباید خالی باشند! ',
                 statusAlert: 'error',
-                location: 'rooms'
+                location: 'rooms',
+                user: {
+                    name: process.env.name,
+                    role: process.env.role
+                }
             })
         }
     }
@@ -76,10 +91,22 @@ const newRoom = async (req, res) => {
 }
 
 const main = async (req, res) => {
+    let rooms;
+    try {
+        rooms = await Room.findAll();
+    } catch (error) {
+        console.log(error);
+    }
     res.render(path.join(__dirname, '..', 'views', 'rooms.ejs'), {
+        job:'لیست اتاق ها',
         alert: '',
         statusAlert: '',
-        location: 'rooms'
+        location: 'rooms',
+        user: {
+            name: process.env.name,
+            role: process.env.role
+        },
+        rooms,
     })
 }
 

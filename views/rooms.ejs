@@ -8,7 +8,52 @@
         <%- include('./includes/side.ejs') -%>
         <div class=" min-h-full w-full pr-20">
             <div class="bg-dash absolute "> </div>
-            <h1>rooms page</h1>
+            <div class="bg-white m-table2 br-8 p-20">
+                <div class="flex ju-sb ">
+                    <h3><%=job%></h3>
+                    <a class="btn  btn-blue btn-sm " href="/rooms/new">افزودن جدید</a>
+                </div>
+                <div>
+                    <table class=" m-25 w-full f-s">
+                        <tr>
+                            <th>#</th>
+                            <th>نام اتاق</th>
+                            <th>نوع اتاق</th>
+                            <th>اجاره پایه</th>
+                            <th>توضیحات</th>
+                            <th>وضعیت</th>
+                            <th>عملیات ها</th>
+            
+                        </tr>
+                        <tbody>
+                            <% rooms.forEach(room => { %>
+                                <tr>
+                                    <td><%=room.id %> </td>
+                                    <td><%=room.name%></td>
+                                    <td><%=room.type%></td>
+                                    <td><%=room.cost%></td>
+                                    <td><%=room.description%></td>
+                                    <td>
+                                        <p class="status-cell
+                                        <% if (room.status=='آماده تحویل') { %>bg-green<% } %>
+                                        <% if (room.status=='نیاز به سرویس') { %>bg-yellow<% } %>
+                                        <% if (room.status=='رزرو شده') { %>bg-red<% } %>
+                                        "><%=room.status%></p>
+                                    </td>
+                                    <td>
+                                        <i class='bx bxs-check-circle bg-green tooltip'><span class="tooltiptext">آماده سرویس</span></i>
+                                        <i class='bx bxs-edit-alt bg-purple tooltip'><span class="tooltiptext">ویرایش اتاق</span></i>
+                                        <i class='bx bxs-trash-alt bg-red tooltip'><span class="tooltiptext">حذف اتاق</span></i>
+                                </td>
+                            </tr>
+                            <% }) %>
+                            
+                            
+                        </tbody>
+            
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 <%- include('./includes/foot.ejs') -%> 

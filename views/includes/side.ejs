@@ -22,57 +22,57 @@
             </div>
         </a>
     </div>
-    <div class="b-b">
-        <a href="/users/main">
-            <div class="flex  ju-sb <% if (location=='users') { %>select<% } %> px-10  py-5 my-5 hoverPages">
-                <i class='bx bxs-user'></i>
-                <p class="w-full mx-10">کاربران</p>
-                <i class='bx bx-chevron-left'></i>
-            </div>
-        </a>
-        <a href="#">
-            <div class="flex <% if (location=='status') { %>select<% } %> ju-sb px-10  py-5 my-5 hoverPages">
-                <i class='bx bxs-pie-chart-alt-2'></i>
-                <p class="w-full mx-10">گزارشات</p>
-                <i class='bx bx-chevron-left'></i>
-            </div>
-        </a>
-        <a href="#">
-            <div class="flex <% if (location=='backup') { %>select<% } %> ju-sb px-10 py-5 my-5 hoverPages">
-                <i class='bx bxs-data'></i>
-                <p class="w-full mx-10">پشتیبان گیری</p>
-                <i class='bx bx-chevron-left'></i>
-            </div>
-        </a>
-
-
-    </div>
-    <div class="b-b">
-        <a href="#">
-            <div class="flex  ju-sb <% if (location=='recovery') { %>select<% } %> px-10 py-5 my-5 hoverPages">
-                <i class='bx bxs-lock-alt'></i>
-                <p class="w-full mx-10">بازیابی حساب</p>
-                <i class='bx bx-chevron-left'></i>
-            </div>
-        </a>
-
-    </div>
+    <% if (user.role=='ادمین پشتیبان' || user.role=='مدیر' ) { %>
+        <div class="b-b">
+            <a href="/users/main">
+                <div class="flex  ju-sb <% if (location=='users') { %>select<% } %> px-10  py-5 my-5 hoverPages">
+                    <i class='bx bxs-user'></i>
+                    <p class="w-full mx-10">کاربران</p>
+                    <i class='bx bx-chevron-left'></i>
+                </div>
+            </a>
+            <a href="#">
+                <div class="flex <% if (location=='status') { %>select<% } %> ju-sb px-10  py-5 my-5 hoverPages">
+                    <i class='bx bxs-pie-chart-alt-2'></i>
+                    <p class="w-full mx-10">گزارشات</p>
+                    <i class='bx bx-chevron-left'></i>
+                </div>
+            </a>
+            <a href="#">
+                <div class="flex <% if (location=='backup') { %>select<% } %> ju-sb px-10 py-5 my-5 hoverPages">
+                    <i class='bx bxs-data'></i>
+                    <p class="w-full mx-10">پشتیبان گیری</p>
+                    <i class='bx bx-chevron-left'></i>
+                </div>
+            </a>
+        </div>
+    <% } %>
+    <% if (user.role=='ادمین پشتیبان' ) { %>
+        <div class="b-b">
+            <a href="#">
+                <div
+                    class="flex  ju-sb <% if (location=='recovery') { %>select<% } %> px-10 py-5 my-5 hoverPages">
+                    <i class='bx bxs-lock-alt'></i>
+                    <p class="w-full mx-10">بازیابی حساب</p>
+                    <i class='bx bx-chevron-left'></i>
+                </div>
+            </a>
+        </div>
+    <% } %>
     <div>
-        <a href="/public/about2">
+        <a  onclick='logout("about2")'>
             <div class="flex  ju-sb px-10  py-5 my-5 hoverPages">
                 <i class='bx bxs-help-circle'></i>
                 <p class="w-full mx-10">پشتیبانی سامانه</p>
                 <i class='bx bx-chevron-left'></i>
             </div>
         </a>
-        <a href="/public/logout">
+        <a onclick='logout("logout")'>
             <div class="flex  ju-sb px-10  py-5 my-5 hoverPages">
                 <i class='bx bxs-exit'></i>
                 <p class="w-full mx-10 ">خروج</p>
                 <i class='bx bx-chevron-left'></i>
             </div>
         </a>
-
     </div>
-
 </div>
