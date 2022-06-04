@@ -5,7 +5,6 @@ const express = require('express')
 
 
 const userController =require('../controllers/users');
-const Swal = require('sweetalert2')
 const router = express.Router()
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -26,6 +25,11 @@ router.post('/new', userController.newUser)
 
 router.get('/main',userController.main)
 
+router.get('/deleteRoom',userController.deleteUser)
+
+router.get('/edit',userController.edit)
+
+router.post('/edit',userController.editUser)
 
 
 

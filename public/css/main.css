@@ -71,7 +71,7 @@
     margin-bottom: 3px;
 }
 .m-25{
-    margin: 25px 0;
+    margin: 13px 0;
 }
 
 .side i{
@@ -85,6 +85,16 @@
 }
 .h-30{
     height: 35px;
+}
+.arrow{
+    width: 25px;
+    height: 25px;
+    border: 1px solid var(--grayline-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--graytext-color);
+    margin: 0 6px 6px 6px;
 }
 .h-50{
     height: 50px;
@@ -114,14 +124,15 @@
 }
 
 .m-table1{
-    margin: 75px 5%;
+    margin: 55px 5% 55px 5%;
 }
 .m-table2{
-    margin: 75px 10%;
+    margin: 50px 10% 30px 10%;
 }
 .m-table3{
-    margin: 75px 5%;
+    margin: 55px 5% 55px 5%;
 }
+
 .m-submit{
     margin:30px 0 10px 5%;
     border: none;
@@ -154,7 +165,7 @@ table{
     border-collapse: collapse; 
     
 }
-td>i{
+td i{
     font-size: .82rem;
     width: 12px;
     height: 12px;
@@ -265,7 +276,6 @@ select{
 .tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black;
   }
   
   .tooltip .tooltiptext {
@@ -278,8 +288,8 @@ select{
     padding: 5px 0;
     position: absolute;
     z-index: 1;
-    top: 150%;
-    left: 150%;
+    top: 125%;
+    left: 140%;
     margin-left: -60px;
   }
   
@@ -296,6 +306,9 @@ select{
   
   .tooltip:hover .tooltiptext {
     visibility: visible;
+  }
+  .unvisible{
+      visibility: hidden;
   }
 
 

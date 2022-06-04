@@ -1,0 +1,70 @@
+<%- include('./includes/head.ejs') -%>
+    <div class="fixed w-full h-50">
+        <%- include('./includes/header.ejs') -%>
+            <%- include('./includes/side.ejs') -%>
+    </div>
+
+    <%- include('./includes/header.ejs') -%>
+        <div class="flex align-start ">
+            <%- include('./includes/side.ejs') -%>
+                <div class=" min-h-full w-full pr-20">
+                    <div class="bg-dash absolute "> </div>
+                    <div class="bg-white m-table2 br-8 p-20">
+                        <div class="flex ju-sb ">
+                            <h3>
+                                <%= job %>
+                            </h3>
+                            <h3>   شناسه کاربر:  <%= userE.id %>  </h3>
+                            <a class="btn  btn-red bg-red btn-sm" href="/users/edit?id=<%= userE.id %>">بازنشانی فرم</a>
+                        </div>
+
+                        <form class="form" method="post" action="/users/edit" autocomplete="off">
+                            <div class=" input">
+                                <label for="fname" class="required">نام:</label><br>
+                                <input name="fname" type="text" maxlength="21" value=<%=userE.firstName%>>
+                            </div>
+                            <div class=" input">
+                                <label class="required" for="lname">نام خانوادگی:</label><br>
+                                <input name="lname" type="text" maxlength="21" value=<%=userE.lastName%>>
+                            </div>
+                            <div class=" input">
+                                <label class="required" for="role">نقش:</label><br>
+                                <select name="role" >
+                                    <option value="مهماندار" <% if (userE.role=="مهماندار") { %>selected<% } %>>مهماندار</option>
+                                    <option value="مدیر" <% if (userE.role=="مدیر") { %>selected<% } %>>مدیر</option>
+                                    <option value="ادمین پشتیبان" <% if (userE.role=="ادمین پشتیبان") { %>selected<% } %>>ادمین پشتیبان</option>
+                                </select>
+                            </div>
+                            <div class=" input">
+                                <label class="required" for="nid" >کد ملی:</label><br>
+                                <input name="nid" type="number" maxlength="15" value=<%=userE.nId%>>
+                            </div>
+                            <div class=" input">
+                                <label class="required" for="phone">شماره تماس:</label><br>
+                                <input name="phone" type="number" maxlength="15" value=<%=userE.callNumber%>>
+                            </div>
+                            <div class="input"></div>
+                            <div class="dash"></div>
+                            <div class=" input">
+                                <label  for="userName">نام کاربری:</label><br>
+                                <input name="userName" type="text" maxlength="21" disabled value=<%=userE.userName%> >
+                            </div>
+                                <input name="userName" type="hidden" maxlength="21"  value=<%=userE.userName%> >
+                            <div class=" input">
+                                <label class="required" for="password"> رمز عبور:</label><br>
+                                <input name="password" type="password" maxlength="21">
+                            </div>
+                            <div class=" input">
+                                <label class="required" for="passwordre"> تکرار رمز عبور:</label><br>
+                                <input name="passwordre" type="password" maxlength="21">
+                            </div>
+                            <div class="flex ltr w-full">
+                                <input class="btn m-submit  btn-blue btn-sm" type="submit" value="افزودن">
+                                <a class="btn m-submit btn-red bg-red btn-sm"  href="/users/main">انصراف</a>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+        </div>
+        <%- include('./includes/foot.ejs') -%>

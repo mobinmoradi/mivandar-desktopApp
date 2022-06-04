@@ -10,13 +10,13 @@
             <div class="bg-dash absolute "> </div>
             <div class="bg-white m-table2 br-8 p-20">
                 <div class="flex ju-sb ">
-                    <h3>رزرواسیون</h3>
+                    <h3><%=job%></h3>
                     <a class="btn  btn-blue btn-sm " href="/users/new">افزودن جدید</a>
                 </div>
                 <div>
                     <table class=" m-25 w-full f-s">
                         <tr>
-                            <th>#</th>
+                            <th>شناسه کاربر</th>
                             <th>نام</th>
                             <th>نام خانوادگی</th>
                             <th>نام کاربری</th>
@@ -30,15 +30,16 @@
                             <% users.forEach(user => { %>
                                 <tr>
                                     <td><%=user.id %> </td>
-                                    <td><%=user.firstName%></td>
+                                    <td><%=user.
+                                    %></td>
                                     <td><%=user.lastName%></td>
                                     <td><%=user.userName%></td>
                                     <td><%=user.role%></td>
                                     <td><%=user.nId%></td>
                                     <td><%=user.callNumber%></td>
                                     <td>
-                                        <i class='bx bxs-edit-alt bg-purple tooltip'><span class="tooltiptext">ویرایش اتاق</span></i>
-                                        <i class='bx bxs-trash-alt bg-red tooltip'><span class="tooltiptext">حذف اتاق</span></i>
+                                        <a href="/users/edit?id=<%=user.id%>"><i class='bx bxs-edit-alt bg-purple tooltip'><span class="tooltiptext">ویرایش کاربر</span></i></a>
+                                        <a onclick='deleteRecord("users","<%=user.id %>")'><i  class='bx bxs-trash-alt bg-red tooltip'><span class="tooltiptext">حذف کاربر</span></i></a>
                                 </td>
                             </tr>
                             <% }) %>
@@ -48,6 +49,22 @@
             
                     </table>
                 </div>
+                   <script>
+                       function pageM(el){
+                           page = +document.getElementById('page').innerText
+                           if(el=='next'){
+                               window.location.href = `/users/main?page=${page+1}`;
+                           }
+                           if(el=='prev'){
+                               window.location.href = `/users/main?page=${page-1}`;
+                           }
+                       }
+                   </script>
+                   <div class="flex align-start ">
+                       <a class="<% if (page=== pageCount) { %>unvisible<% } %>" onclick="pageM('next')" ><div class="arrow "><i class='bx bxs-chevron-right f-b tooltip'><span class="tooltiptext f-s">صفحه بعد</span></i></div></a>
+                       <div>صفحه <span id="page"><%=page%></span> از <span><%=pageCount %></span></div> 
+                       <a class="<% if (page=== 1) { %>unvisible<% } %>" onclick="pageM('prev')"><div class="arrow "><i class='bx bxs-chevron-left  f-b tooltip'><span class="tooltiptext f-s">صفحه قبل</span></i></div></a>
+                   </div>
             </div>
         </div>
     </div>

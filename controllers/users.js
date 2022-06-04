@@ -108,28 +108,8 @@ const newUser = async (req, res) => {
             } catch (error) {
                 console.log(error);
             }
-            let users;
-            try {
-                users = await User.findAll({
-                    attributes: { exclude: ['password'] }
-                })
-            } catch (error) {
-                console.log(error);
-            }
-            res.render(path.join(__dirname, '..', 'views', 'users.ejs'), {
-                job: 'افزودن کاربر',
-                alert: 'ثبت کاربر با موفقیت انجام شد',
-                statusAlert: 'success',
-                location: 'users',
-                user: {
-                    name: process.env.name,
-                    role: process.env.role
-                },
-                users,
-
-            })
+            res.redirect('/users/main?job=add')
         }
-
 
     } else {
 
@@ -201,6 +181,24 @@ const newUser = async (req, res) => {
 }
 
 const main = async (req, res) => {
+    let alert = '';
+    let statusAlert = '';
+    if (req.query.job == 'add') {
+        alert = 'افزودن کاربر با موفقیت انجام شد!';
+        statusAlert = 'success'
+    }
+    if (req.query.job == 'delete') {
+        alert = 'حذف کاربر با موفقیت انجام شد';
+        statusAlert = 'success'
+    }
+    if (req.query.job == 'edit') {
+        alert = 'ویرایش کاربر با موفقیت انجام شد';
+        statusAlert = 'success'
+    }
+    let page = +req.query.page;
+    if (!page) {
+        page = 1;
+    }
     let users;
     try {
         users = await User.findAll({
@@ -209,7 +207,42 @@ const main = async (req, res) => {
     } catch (error) {
         console.log(error);
     }
+    pageCount = Math.ceil(users.length / 10);
+    let usersOnPage = users.slice((0 + (10 * (page - 1))), (10 + (10 * (page - 1))))
     res.render(path.join(__dirname, '..', 'views', 'users.ejs'), {
+        job: 'لیست کاربران',
+        alert,
+        statusAlert,
+        location: 'users',
+        user: {
+            name: process.env.name,
+            role: process.env.role
+        },
+        users: usersOnPage,
+        page,
+        pageCount
+    })
+}
+
+const deleteUser = async (req, res) => {
+    try {
+        await User.destroy({ where: { id: req.query.id } })
+    } catch (error) {
+        console.log(error);
+    }
+    res.redirect('/users/main?job=delete')
+}
+
+
+const edit = async (req, res) => {
+    let userE;
+    try {
+        userE = await User.findOne({ where: { id: req.query.id } })
+    } catch (error) {
+        console.log(error);
+    }
+    res.render(path.join(__dirname, '..', 'views', 'userEditForm.ejs'), {
+        job: 'ویرایش کاربر',
         alert: '',
         statusAlert: '',
         location: 'users',
@@ -217,11 +250,95 @@ const main = async (req, res) => {
             name: process.env.name,
             role: process.env.role
         },
-        users,
+        userE,
     })
+}
+
+const editUser = async (req, res) => {
+
+    let validate
+    try {
+        const check = await v.compile(schema);
+        validate = await check(req.body)
+    } catch (error) {
+        console.log(error);
+    }
+    console.log(validate);
+    if (validate === true) {
+        let user = req.body;
+        try {
+            user.password = await bcrypt.hashSync(user.password, await bcrypt.genSaltSync(2));
+            await User.update({
+                firstName: user.fname.trim(),
+                lastName: user.lname.trim(),
+                role: user.role.trim(),
+                nId: user.nid.trim(),
+                callNumber: user.phone.trim(),
+                password: user.password.trim()
+            }, {
+                where: {
+                    userName: user.userName
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
+        res.redirect('/users/main?job=edit')
+
+    } else {
+        let userE;
+        try {
+            userE = await User.findOne({ where: { id: req.query.id } })
+        } catch (error) {
+            console.log(error);
+        }
+        if (validate.some((obj) => { return obj.type == 'stringMin' }) && validate.some((obj) => { return obj.field != 'password' })) {
+            res.render(path.join(__dirname, '..', 'views', 'userForm.ejs'), {
+                job: 'ویرایش کاربر',
+                alert: ' فیلدهای الزامی نباید خالی باشند! ',
+                statusAlert: 'error',
+                location: 'users',
+                user: {
+                    name: process.env.name,
+                    role: process.env.role
+                },
+                userE
+            })
+        }
+        if (validate.some((obj) => { return obj.type == 'stringMin' }) && validate.some((obj) => { return obj.field == 'password' })) {
+            res.render(path.join(__dirname, '..', 'views', 'userForm.ejs'), {
+                job: 'ویرایش کاربر',
+                alert: ' رمز عبور باید بیشتر یا مساوی از 6 کاراکتر باشد ',
+                statusAlert: 'error',
+                location: 'users',
+                user: {
+                    name: process.env.name,
+                    role: process.env.role
+                },
+                userE
+            })
+        }
+        if (validate.some((obj) => { return obj.type == 'equalField' })) {
+            res.render(path.join(__dirname, '..', 'views', 'userForm.ejs'), {
+                job: 'ویرایش کاربر',
+                alert: ' رمز عبور با تکرار آن برابر نیست! ',
+                statusAlert: 'error',
+                location: 'users',
+                user: {
+                    name: process.env.name,
+                    role: process.env.role
+                },
+                userE
+            })
+        }
+    }
+
 }
 
 module.exports = {
     newUser,
-    main
+    main,
+    deleteUser,
+    edit,
+    editUser
 }

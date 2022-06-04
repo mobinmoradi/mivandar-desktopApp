@@ -1,5 +1,5 @@
 <script>
-
+    var xhttp = new XMLHttpRequest();
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-start',
@@ -22,12 +22,12 @@
     }
 
     function logout(href) {
-        let path=`/public/${href}`
-        title = href==='logout'?'خروج از سیستم':'هدایت به صفحه درباره ما';
+        let path = `/public/${href}`
+        title = href === 'logout' ? 'خروج از سیستم' : 'هدایت به صفحه درباره ما';
         swal.fire({
             icon: 'question',
             title,
-            text:'با این کار شما از سامانه خارج میشود.آیا میخواهید ادامه بدهید؟',
+            text: 'با این کار شما از سامانه خارج میشود.آیا میخواهید ادامه بدهید؟',
             cancelButtonText: 'انصراف',
             confirmButtonText: 'خروج',
             showCancelButton: true,
@@ -38,5 +38,28 @@
                 window.location.href = path;
             }
         })
+    }
+
+    function deleteRecord(type, id) {
+        let path = `/${type}/deleteRoom?id=${id}`
+        swal.fire({
+            icon: 'question',
+            title: 'اطمینان از حذف داده',
+            text: 'آیا از حذف داده مورد نظر اطمینان دارید؟',
+            cancelButtonText: 'انصراف',
+            confirmButtonText: 'حذف',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = path;
+            }
+        })
+    }
+
+    function cost1(value){
+        console.log(value);
+        let text =document.getElementById('cost')
+        text.innerText=wordifyfa(value)
     }
 </script>

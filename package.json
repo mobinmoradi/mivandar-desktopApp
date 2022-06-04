@@ -19,6 +19,7 @@
     "nodemon": "^2.0.15",
     "sequelize": "^6.18.0",
     "sqlite3": "^5.0.2",
-    "sweetalert2": "^11.4.14"
+    "sweetalert2": "^11.4.14",
+    "wordifyfa": "^1.4.0"
   }
 }

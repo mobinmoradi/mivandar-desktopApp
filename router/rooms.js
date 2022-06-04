@@ -24,7 +24,13 @@ router.get('/new', (req, res) => {
 
 router.post('/new', roomController.newRoom)
 
-router.get('/main',roomController.main)
+router.use('/main',roomController.main)
+
+router.get('/deleteRoom',roomController.deleteRoom)
+
+router.get('/edit',roomController.edit)
+
+router.post('/edit',roomController.editUser)
 
 
 

@@ -2,7 +2,6 @@
 <div class="fixed w-full h-50">
     <%- include('./includes/header.ejs') -%><%- include('./includes/side.ejs') -%>
 </div>
-
 <%- include('./includes/header.ejs') -%>
     <div class="flex align-start ">
         <%- include('./includes/side.ejs') -%>
@@ -16,19 +15,18 @@
                 <div>
                     <table class=" m-25 w-full f-s">
                         <tr>
-                            <th>#</th>
+                            <th>شناسه اتاق</th>
                             <th>نام اتاق</th>
                             <th>نوع اتاق</th>
                             <th>اجاره پایه</th>
                             <th>توضیحات</th>
                             <th>وضعیت</th>
                             <th>عملیات ها</th>
-            
                         </tr>
                         <tbody>
                             <% rooms.forEach(room => { %>
                                 <tr>
-                                    <td><%=room.id %> </td>
+                                    <td ><%=room.id %> </td>
                                     <td><%=room.name%></td>
                                     <td><%=room.type%></td>
                                     <td><%=room.cost%></td>
@@ -42,17 +40,36 @@
                                     </td>
                                     <td>
                                         <i class='bx bxs-check-circle bg-green tooltip'><span class="tooltiptext">آماده سرویس</span></i>
-                                        <i class='bx bxs-edit-alt bg-purple tooltip'><span class="tooltiptext">ویرایش اتاق</span></i>
-                                        <i class='bx bxs-trash-alt bg-red tooltip'><span class="tooltiptext">حذف اتاق</span></i>
+                                        <a href="/rooms/edit?id=<%=room.id%>"><i class='bx bxs-edit-alt bg-purple tooltip'><span class="tooltiptext">ویرایش اتاق</span></i></a>
+                                        <a onclick='deleteRecord("rooms","<%=room.id %>")'><i  class='bx bxs-trash-alt bg-red tooltip'><span class="tooltiptext">حذف اتاق</span></i></a>
                                 </td>
                             </tr>
                             <% }) %>
-                            
-                            
                         </tbody>
-            
                     </table>
                 </div>
+                <% if (pageCount ==0) { %>
+                 <h3 class="text-center my-5"> لیست اتاق ها خالی میباشد</h3>
+                
+                <% } else { %>
+                <script>
+                    function pageM(el){
+                        page = +document.getElementById('page').innerText
+                        if(el=='next'){
+                            window.location.href = `/rooms/main?page=${page+1}`;
+                        }
+                        if(el=='prev'){
+                            window.location.href = `/rooms/main?page=${page-1}`;
+                        }
+                    }
+                </script>
+                <div class="flex align-start ">
+                    <a class="<% if (page=== pageCount) { %>unvisible<% } %>" onclick="pageM('next')" ><div class="arrow "><i class='bx bxs-chevron-right f-b tooltip'><span class="tooltiptext f-s">صفحه بعد</span></i></div></a>
+                    <div>صفحه <span id="page"><%=page%></span> از <span><%=pageCount %></span></div> 
+                    <a class="<% if (page=== 1) { %>unvisible<% } %>" onclick="pageM('prev')"><div class="arrow "><i class='bx bxs-chevron-left  f-b tooltip'><span class="tooltiptext f-s">صفحه قبل</span></i></div></a>
+                </div>
+                <% } %>
+                
             </div>
         </div>
     </div>
