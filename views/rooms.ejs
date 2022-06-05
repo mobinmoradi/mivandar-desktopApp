@@ -1,3 +1,4 @@
+
 <%- include('./includes/head.ejs') -%>
 <div class="fixed w-full h-50">
     <%- include('./includes/header.ejs') -%><%- include('./includes/side.ejs') -%>
@@ -35,7 +36,7 @@
                                         <p class="status-cell
                                         <% if (room.status=='آماده تحویل') { %>bg-green<% } %>
                                         <% if (room.status=='نیاز به سرویس') { %>bg-yellow<% } %>
-                                        <% if (room.status=='رزرو شده') { %>bg-red<% } %>
+                                        <% if (room.status=='در حال استفاده') { %>bg-red<% } %>
                                         "><%=room.status%></p>
                                     </td>
                                     <td>
@@ -74,3 +75,4 @@
         </div>
     </div>
 <%- include('./includes/foot.ejs') -%> 
+

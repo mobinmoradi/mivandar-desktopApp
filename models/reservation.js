@@ -31,10 +31,6 @@ const Reservation = sequelize.define('Reservation', {
         type:DataTypes.STRING,
         allowNull:false
     },
-    resType:{
-        type:DataTypes.STRING,
-        allowNull:false
-    },
     enter:{
         type:DataTypes.DATEONLY,
         allowNull:false
@@ -54,24 +50,10 @@ const Reservation = sequelize.define('Reservation', {
      type:DataTypes.NUMBER,
      allowNull:false
     },
-    Paid:{
-        type:DataTypes.NUMBER,
-        allowNull:false,
-        defaultValue:0
-    },
-    payMethod:{
-        type:DataTypes.STRING,
-        allowNull:false
-    },
     resStatus:{
         type:DataTypes.STRING,
         allowNull:false,
         defaultValue:'در حال اقامت'
-    },
-    payStatus:{
-        type:DataTypes.STRING,
-        allowNull:false,
-        defaultValue:'بدون پرداخت'
     }
 
 });

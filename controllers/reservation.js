@@ -1,3 +1,4 @@
+
 const path = require('path');
 const process = require('process');
 
@@ -31,23 +32,13 @@ const schema = {
     phone: {
         type: 'string',
         min: 1,
-        custom: (v, errors) => {
-            const re = "^[0-9]*$";
-            if (v.search(re) == -1) errors.push({ type: "phone" })
-            return v;
-        }
     },
     address: {
         type: 'string',
         min: 1,
     },
     roomName: {
-        type: 'string',
-        min: 1,
-    },
-    resType: {
-        type: 'string',
-        min: 1,
+        type: 'string'
     },
     enter: {
         type: "string",
@@ -63,16 +54,6 @@ const schema = {
     },
     description: {
         type: "string",
-    },
-    totalPay: {
-        type: "string",
-    },
-    Paid: {
-        type: "string"
-    },
-    payMethod: {
-        type: "string",
-        min: 1,
     }
 };
 
@@ -91,6 +72,7 @@ async function Roomlist() {
 
 const newRes = async (req, res) => {
     let roomslist = await Roomlist();
+    console.log(req.body);
     let validate
     try {
         const check = v.compile(schema);
@@ -103,38 +85,55 @@ const newRes = async (req, res) => {
 
 
     if (validate === true) {
-        let reserve = req.body;
-        let roomExist;
-        try {
-            roomExist = await Room.findOne({ where: { name: reserve.roomName.trim() } })
-        } catch (error) {
-            console.log(error);
-        }
-        if (!roomExist) {
+
+        let reservation = req.body;
+
+
+        moment.locale('fa');
+        let mIn = moment(req.body.enter, 'jYYYY/jM/jD');
+        let mOut = moment(req.body.out, 'jYYYY/jM/jD');
+        moment.locale('en');
+        var date1 = new Date(mIn.format('YYYY/M/D'));
+        var date2 = new Date(mOut.format('YYYY/M/D'));
+        if ((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24) < 0) {
             res.render(path.join(__dirname, '..', 'views', 'resForm.ejs'), {
                 job: 'رزرو جدید',
-                alert: 'اتاقی با این نام ثبت نشده است!',
+                alert: 'تاریخ خروج نباید تاریخی قبل از تاریخ ورود باشد! ',
                 statusAlert: 'error',
                 rooms: roomslist,
-                location:'reservation',
-                user:{
-                    name:process.env.name,
-                    role:process.env.role
+                location: 'reservation',
+                user: {
+                    name: process.env.name,
+                    role: process.env.role
                 }
             })
+        } else {
+            
+            try {
+                let room = await Room.findOne({where:{name:reservation.roomName}})
+                let totalPay =((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24)+1) * room.cost;
+                await Room.update({status:'در حال استفاده'},{ where:{name:reservation.roomName}})
+                await Reservation.create({
+                    firstName:reservation.fname.trim(),
+                    lasttName:reservation.lname.trim(),
+                    gender:reservation.gender.trim(),
+                    nId:reservation.nid.trim(),
+                    callNumber:reservation.phone.trim(),
+                    address:reservation.address.trim(),
+                    roomName:reservation.roomName.trim(),
+                    enter:reservation.enter.trim(),
+                    out:reservation.out.trim(),
+                    pNum:reservation.pNum.trim(),
+                    description:reservation.description.trim(),
+                    totalPay
+                })
+            } catch (error) {
+                console.log(error);
+            }
+            res.redirect('/reservation/main?job=add');
         }
 
-        res.render(path.join(__dirname, '..', 'views', 'resForm.ejs'), {
-            job: 'رزرو جدید',
-            alert: 'ok ',
-            statusAlert: 'info',
-            rooms: roomslist,
-            location:'reservation',
-            user:{
-                name:process.env.name,
-                role:process.env.role
-            }
-        })
+    
     } else {
         if (validate.some((obj) => { return obj.type == 'stringMin' })) {
             res.render(path.join(__dirname, '..', 'views', 'resForm.ejs'), {
@@ -142,10 +141,10 @@ const newRes = async (req, res) => {
                 alert: ' فیلدهای الزامی نباید خالی باشند! ',
                 statusAlert: 'error',
                 rooms: roomslist,
-                location:'reservation',
-                user:{
-                    name:process.env.name,
-                    role:process.env.role
+                location: 'reservation',
+                user: {
+                    name: process.env.name,
+                    role: process.env.role
                 }
             })
         }
@@ -161,29 +160,64 @@ const getForm = async (req, res) => {
         alert: '',
         statusAlert: '',
         rooms: roomslist,
-        location:'reservation',
-        user:{
-            name:process.env.name,
-            role:process.env.role
+        location: 'reservation',
+        user: {
+            name: process.env.name,
+            role: process.env.role
         }
     })
 }
 
 const main = async (req, res) => {
+    let alert = '';
+    let statusAlert = '';
+    if (req.query.job == 'add') {
+        alert = ' رزرواسیون با موفقیت انجام شد!';
+        statusAlert = 'success'
+    }
+    let reservation;
+    try {
+        reservation = await Reservation.findAll()
+    } catch (error) {
+        console.log(error);
+    }
+    let page = +req.query.page;
+    if (!page) {
+        page = 1;
+    }
+    pageCount = Math.ceil(reservation.length / 10);
+    let reservationsOnPage = reservation.slice((0 + (10 * (page - 1))), (10 + (10 * (page - 1))))
     res.render(path.join(__dirname, '..', 'views', 'reservation.ejs'), {
-        alert: '',
-        statusAlert: '',
-        location:'reservation',
-        user:{
-            name:process.env.name,
-            role:process.env.role
-        }
+        job: 'لیست رزروها',
+        alert,
+        statusAlert,
+        location: 'reservation',
+        user: {
+            name: process.env.name,
+            role: process.env.role
+        },
+        reservations: reservationsOnPage,
+        page,
+        pageCount
     })
+}
+const deleteUser = async (req, res) => {
+
+}
+const edit = async (req, res) => {
+
+}
+const editUser = async (req, res) => {
+
 }
 
 
 module.exports = {
     newRes,
     getForm,
-    main
+    main,
+    deleteUser,
+    edit,
+    editUser
 }
+

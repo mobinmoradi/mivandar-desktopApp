@@ -1,3 +1,4 @@
+
 const path = require('path');
 const process = require('process');
 
@@ -77,7 +78,7 @@ const newRoom = async (req, res) => {
             } catch (error) {
                 console.log(error);
             }
-            res.redirect(307, '/rooms/main?job=add');
+            res.redirect('/rooms/main?job=add');
         }
     } else {
         if (validate.some((obj) => { return obj.type == 'stringMin' })) {

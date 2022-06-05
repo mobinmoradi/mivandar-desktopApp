@@ -10,7 +10,7 @@
             <div class="bg-dash absolute "> </div>
             <div class="bg-white m-table2 br-8 p-20">
                 <div class="flex ju-sb ">
-                    <h3><%=job%></h3>
+                    <h3>رزرواسیون</h3>
                     <a class="btn  btn-blue btn-sm " href="/users/new">افزودن جدید</a>
                 </div>
                 <div>
@@ -24,14 +24,12 @@
                             <th>کد ملی</th>
                             <th>شماره تماس</th>
                             <th>عملیات ها</th>
-            
                         </tr>
                         <tbody>
                             <% users.forEach(user => { %>
                                 <tr>
                                     <td><%=user.id %> </td>
-                                    <td><%=user.
-                                    %></td>
+                                    <td><%=user.firstName%></td>
                                     <td><%=user.lastName%></td>
                                     <td><%=user.userName%></td>
                                     <td><%=user.role%></td>
@@ -49,6 +47,10 @@
             
                     </table>
                 </div>
+                <% if (pageCount ==0) { %>
+                    <h3 class="text-center my-5"> لیست اتاق ها خالی میباشد</h3>
+                   
+                   <% } else { %>
                    <script>
                        function pageM(el){
                            page = +document.getElementById('page').innerText
@@ -65,6 +67,7 @@
                        <div>صفحه <span id="page"><%=page%></span> از <span><%=pageCount %></span></div> 
                        <a class="<% if (page=== 1) { %>unvisible<% } %>" onclick="pageM('prev')"><div class="arrow "><i class='bx bxs-chevron-left  f-b tooltip'><span class="tooltiptext f-s">صفحه قبل</span></i></div></a>
                    </div>
+                   <% } %>
             </div>
         </div>
     </div>

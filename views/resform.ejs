@@ -1,109 +1,81 @@
-<!--Required data:  -->
-<!--job   -->
 
 <%- include('./includes/head.ejs') -%>
-    <div class="fixed w-full h-50">
-        <%- include('./includes/header.ejs') -%>
-            <%- include('./includes/side.ejs') -%>
-    </div>
-
+<div class="fixed w-full h-50">
     <%- include('./includes/header.ejs') -%>
-        <div class="flex align-start ">
-            <%- include('./includes/side.ejs') -%>
-                <div class=" min-h-full w-full pr-20">
-                    <div class="bg-dash absolute "> </div>
-                    <div class="bg-white m-table br-8 p-20">
-                        <div class="flex ju-sb ">
-                            <h3>
-                                <%= job %>
-                            </h3>
+        <%- include('./includes/side.ejs') -%>
+</div>
 
-                        </div>
-
-                        <form class="form" method="post" action="/reservation/new" autocomplete="off">
-                            <div class=" input">
-                                <label for="fname" class="required">نام:</label><br>
-                                <input name="fname" type="text">
-                            </div>
-                            <div class=" input">
-                                <label class="required" for="lname">نام خانوادگی:</label><br>
-                                <input name="lname" type="text">
-                            </div>
-                            <div class=" input">
-                                <label class="required" for="gender">جنسیت:</label><br>
-                                <select name="gender">
-                                    <option value="مرد">مرد</option>
-                                    <option value="زن">زن</option>
-                                </select>
-                            </div>
-                            <div class=" input">
-                                <label class="required" for="nid">کد ملی:</label><br>
-                                <input name="nid" type="number">
-                            </div>
-                            <div class=" input">
-                                <label class="required" for="phone">شماره تماس:</label><br>
-                                <input name="phone" type="tel">
-                            </div>
-                            <div class=" input">
-                                <label class="required" for="address">آدرس:</label><br>
-                                <input name="address" type="text">
-                            </div>
-                            <div class=" input">
-                                <label class="required" for="roomName">نام اتاق:</label><br>
-                                <select name="type">
-                                    <% rooms.forEach(el=> { %>
-                                        <option value=<%=el%>><%=el%></option>
-                                        <% }) %>
-                                </select>
-                            </div>
-                            <div class=" input">
-                                <label class="required" for="ressType">نوع خدمات:</label><br>
-                                <select name="resType">
-                                    <option value="فقط صبحانه">فقط صبحانه</option>
-                                    <option value="هر سه وعده">هر سه وعده</option>
-                                </select>
-                            </div>
-                            <div class=" input">
-                                <label class="required" for="enter"> تاریخ ورود:</label><br>
-                                <input name="enter" data-jdp>
-                            </div>
-                            <div class=" input">
-                                <label class="required" for="out"> تاریخ خروج:</label><br>
-                                <input name="out" data-jdp>
-                            </div>
-                            <div class=" input">
-                                <label class="required" for="pNum">تعداد مهمان:</label><br>
-                                <input name="pNum" type="number">
-                            </div>
-                            <div class=" input">
-                                <label class="" for="description">توضیحات:</label><br>
-                                <input name="description" type="text">
-                            </div>
-                            <div class="dash"></div>
-                            <div class=" input">
-                                <label class="required" for="totalPay">حق اجاره:</label><br>
-                                <input name="totalPay" type="number">
-                            </div>
-
-                            <div class=" input">
-                                <label class="required" for="Paid">مبلغ پرداخت شده:</label><br>
-                                <input name="Paid" type="number">
-                            </div>
-                            <div class=" input">
-                                <label class="required" for="payMethod">شیوه پرداخت:</label><br>
-                                <select name="payMethod">
-                                    <option value="نقد">نقد</option>
-                                    <option value="کارتخوان">کارتخوان</option>
-                                    <option value="سایر">سایر</option>
-                                </select>
-                            </div>
-                            <div class="flex ltr w-full">
-                                <input class="btn m-submit  btn-blue btn-sm" type="submit" value="افزودن">
-                                <a class="btn m-submit btn-red bg-red btn-sm" href="#">انصراف</a>
-                            </div>
-                        </form>
+<%- include('./includes/header.ejs') -%>
+    <div class="flex align-start ">
+        <%- include('./includes/side.ejs') -%>
+            <div class=" min-h-full w-full pr-20">
+                <div class="bg-dash absolute "> </div>
+                <div class="bg-white m-table1 br-8 p-20">
+                    <div class="flex ju-sb ">
+                        <h3>
+                            <%= job %>
+                        </h3>
 
                     </div>
+
+                    <form class="form" method="post" action="/reservation/new" autocomplete="off">
+                        <div class=" input">
+                            <label for="fname" class="required">نام:</label><br>
+                            <input name="fname" type="text">
+                        </div>
+                        <div class=" input">
+                            <label class="required" for="lname">نام خانوادگی:</label><br>
+                            <input name="lname" type="text">
+                        </div>
+                        <div class=" input">
+                            <label class="required" for="gender">جنسیت:</label><br>
+                            <select name="gender">
+                                <option value="مرد">مرد</option>
+                                <option value="زن">زن</option>
+                            </select>
+                        </div>
+                        <div class=" input">
+                            <label class="required" for="nid">کد ملی:</label><br>
+                            <input name="nid" type="number">
+                        </div>
+                        <div class=" input">
+                            <label class="required" for="phone">شماره تماس:</label><br>
+                            <input name="phone" type="number">
+                        </div>
+                        <div class=" input">
+                            <label class="required" for="address">آدرس:</label><br>
+                            <input name="address" type="text">
+                        </div>
+                        <div class=" input">
+                            <label class="required" for="roomName">نام اتاق:</label><br>
+                            <select name="roomName">
+                                <% rooms.forEach(el=> { %>
+                                    <option value=<%=el%>><%=el%></option>
+                                    <% }) %>
+                            </select>
+                        </div>
+                        <div class=" input">
+                            <label class="required" for="enter"> تاریخ ورود:</label><br>
+                            <input name="enter" data-jdp>
+                        </div>
+                        <div class=" input">
+                            <label class="required" for="out"> تاریخ خروج:</label><br>
+                            <input name="out" data-jdp>
+                        </div>
+                        <div class=" input">
+                            <label class="required" for="pNum">تعداد مهمان:</label><br>
+                            <input name="pNum" type="number">
+                        </div>
+                        <div class=" input">
+                            <label class="" for="description">توضیحات:</label><br>
+                            <input name="description" type="text">
+                        </div>
+                        <div class="flex ltr w-full">
+                            <input class="btn m-submit  btn-blue btn-sm" type="submit" value="افزودن">
+                            <a class="btn m-submit btn-red bg-red btn-sm" href="/reservation/main">انصراف</a>
+                        </div>
+                    </form>
                 </div>
-        </div>
-        <%- include('./includes/foot.ejs') -%>
+            </div>
+    </div>
+    <%- include('./includes/foot.ejs') -%>

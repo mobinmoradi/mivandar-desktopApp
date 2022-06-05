@@ -1,63 +1,119 @@
+
 <%- include('./includes/head.ejs') -%>
 <div class="fixed w-full h-50">
-    <%- include('./includes/header.ejs') -%><%- include('./includes/side.ejs') -%>
+    <%- include('./includes/header.ejs') -%>
+        <%- include('./includes/side.ejs') -%>
 </div>
 
 <%- include('./includes/header.ejs') -%>
     <div class="flex align-start ">
         <%- include('./includes/side.ejs') -%>
-        <div class=" min-h-full w-full pr-20">
-            <div class="bg-dash absolute "> </div>
-            <div class="bg-white m-table1 br-8 p-20">
-                <div class="flex ju-sb ">
-                    <h3>رزرواسیون</h3>
-                    <a class="btn  btn-blue btn-sm" href="#">افزودن جدید</a>
-                </div>
+            <div class=" min-h-full w-full pr-20">
+                <div class="bg-dash absolute "> </div>
+                <div class="bg-white m-table1 br-8 p-20">
+                    <div class="flex ju-sb ">
+                        <h3>
+                            <%=job%>
+                        </h3>
+                        <a class="btn  btn-blue btn-sm" href="/reservation/new">افزودن جدید</a>
+                    </div>
 
-                <div>
-                    <table class=" m-25 w-full f-s">
-                        <tr>
-                            <th>#</th>
-                            <th>نام مشتری</th>
-                            <th>شماره تماس</th>
-                            <th>نام اتاق</th>
-                            <th>تاریخ ورود</th>
-                            <th>تاریخ خروج</th>
-                            <th>حق اجاره کل</th>
-                            <th>وضعیت اقامت</th>
-                            <th>وضعیت پرداخت</th>
-                            <th>عملیات ها</th>
-            
-                        </tr>
-                        <tbody>
+                    <div>
+                        <table class=" m-25 w-full f-s">
                             <tr>
-                                <td>1</td>
-                                <td>حبیب الله حبیبی</td>
-                                <td>09035687570</td>
-                                <td>vip101</td>
-                                <td>1401/2/3</td>
-                                <td>1401/2/5</td>
-                                <td>2,500,000</td>
-                                <td>
-                                    <p class="status-cell bg-yellow">در حال اقامت</p>
-                                </td>
-
-                                <td >
-                                    <p class="status-cell bg-yellow">پرداخت نشده</p>
-                                </td>
-                                <td>
-                                    <i class='bx bxs-wallet bg-green'></i>
-                                    <i class='bx bxs-info-circle bg-sky'></i>
-                                    <i class='bx bxs-edit-alt bg-purple'></i>
-                                    <i class='bx bxs-trash-alt bg-red'></i>
-                                </td>
+                                <th>#</th>
+                                <th>نام مشتری</th>
+                                <th>نام خانوادگی مشتری</th>
+                                <th>شماره تماس</th>
+                                <th>نام اتاق</th>
+                                <th>تاریخ ورود</th>
+                                <th>تاریخ خروج</th>
+                                <th>حق اجاره کل</th>
+                                <th>وضعیت اقامت</th>
+                                <th>عملیات ها</th>
                             </tr>
-                            
-                        </tbody>
-            
-                    </table>
+                            <tbody>
+                                <% reservations.forEach(reserve=> { %>
+                                    q
+                                    <tr>
+                                        <td>
+                                            <%=reserve.id%>
+                                        </td>
+                                        <td>
+                                            <%=reserve.firstName%>
+                                        </td>
+                                        <td>
+                                            <%=reserve.lasttName%>
+                                        </td>
+                                        <td>
+                                            <%=reserve.callNumber%>
+                                        </td>
+                                        <td>
+                                            <%=reserve.roomName%>
+                                        </td>
+                                        <td>
+                                            <%=reserve.enter%>
+                                        </td>
+                                        <td>
+                                            <%=reserve.out%>
+                                        </td>
+                                        <td>
+                                            <%=reserve.totalPay%>
+                                        </td>
+                                        <td>
+                                            <p class="status-cell bg-yellow">
+                                                <%=reserve.resStatus%>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <i class='bx bx-check bg-green'></i>
+                                            <i class='bx bxs-info-circle bg-sky'></i>
+                                            <i class='bx bxs-edit-alt bg-purple'></i>
+                                            <i class='bx bxs-trash-alt bg-red'></i>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <% if (pageCount===0) { %>
+                        <h3 class="text-center my-5"> لیست اتاق ها خالی میباشد</h3>
+
+                        <% } else { %>
+                            <script>
+                                function pageM(el) {
+                                    page = +document.getElementById('page').innerText
+                                    if (el == 'next') {
+                                        window.location.href = `/reservation/main?page=${page + 1}`;
+                                    }
+                                    if (el == 'prev') {
+                                        window.location.href = `/reservation/main?page=${page - 1}`;
+                                    }
+                                }
+                            </script>
+                            <div class="flex align-start ">
+                                <a class="<% if (page=== pageCount) { %>unvisible<% } %>" onclick="pageM('next')">
+                                    <div class="arrow "><i class='bx bxs-chevron-right f-b tooltip'><span
+                                                class="tooltiptext f-s">صفحه بعد</span></i></div>
+                                </a>
+                                <div>صفحه <span id="page">
+                                        <%=page%>
+                                    </span> از <span>
+                                        <%=pageCount %>
+                                    </span></div>
+                                <a class="<% if (page=== 1) { %>unvisible<% } %>" onclick="pageM('prev')">
+                                    <div class="arrow "><i class='bx bxs-chevron-left  f-b tooltip'><span
+                                                class="tooltiptext f-s">صفحه قبل</span></i></div>
+                                </a>
+                            </div>
+                            <% } %>
+
                 </div>
             </div>
-        </div>
     </div>
-<%- include('./includes/foot.ejs') -%> 
+    </div>
+    </div>
+    <%- include('./includes/foot.ejs') -%>
