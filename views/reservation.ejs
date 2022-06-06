@@ -34,7 +34,7 @@
                             </tr>
                             <tbody>
                                 <% reservations.forEach(reserve=> { %>
-                                    q
+                                    
                                     <tr>
                                         <td>
                                             <%=reserve.id%>
@@ -61,15 +61,16 @@
                                             <%=reserve.totalPay%>
                                         </td>
                                         <td>
-                                            <p class="status-cell bg-yellow">
-                                                <%=reserve.resStatus%>
-                                            </p>
+                                            <p class="status-cell
+                                        <% if (reserve.resStatus=='در حال اقامت') { %>bg-yellow<% } %>
+                                        <% if (reserve.resStatus=='پایان مدت اقامت') { %>bg-red<% } %>
+                                        <% if (reserve.resStatus=='اتمام عملیات') { %>bg-gray<% } %>
+                                        "><%=reserve.resStatus%></p>
                                         </td>
                                         <td>
-                                            <i class='bx bx-check bg-green'></i>
-                                            <i class='bx bxs-info-circle bg-sky'></i>
-                                            <i class='bx bxs-edit-alt bg-purple'></i>
-                                            <i class='bx bxs-trash-alt bg-red'></i>
+                                            <i onclick='chengeStatus("reservation","<%=reserve.id %>")' class='bx bxs-check-circle bg-green tooltip'><span class="tooltiptext"> اتمام اقامت</span></i>
+                                            <a href="/reservation/edit?id=<%=reserve.id%>"><i class='bx bxs-edit-alt bg-purple tooltip'><span class="tooltiptext">ویرایش رزرو</span></i></a>
+                                            <a onclick='deleteRecord("reservation","<%=reserve.id %>")'><i  class='bx bxs-trash-alt bg-red tooltip'><span class="tooltiptext">حذف رزرو</span></i></a>
                                         </td>
                                     </tr>
                                     <% }) %>

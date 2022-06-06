@@ -57,6 +57,23 @@
         })
     }
 
+    function chengeStatus(type, id) {
+        let path = `/${type}/chengeStatus?id=${id}`
+        swal.fire({
+            icon: 'question',
+            title: 'اطمینان از تغییر وضعیت ',
+            text: 'با این کار وضعیت داده انتخاب شده تغییر میکند. آیا از تغییر وضعیت اطمینان دارید؟',
+            cancelButtonText: 'انصراف',
+            confirmButtonText: 'بله',
+            showCancelButton: true,
+            confirmButtonColor: 'green',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = path;
+            }
+        })
+    }
+
     function cost1(value){
         console.log(value);
         let text =document.getElementById('cost')

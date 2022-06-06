@@ -40,7 +40,7 @@
                                         "><%=room.status%></p>
                                     </td>
                                     <td>
-                                        <i class='bx bxs-check-circle bg-green tooltip'><span class="tooltiptext">آماده سرویس</span></i>
+                                        <i onclick='chengeStatus("rooms","<%=room.id %>")' class='bx bxs-check-circle bg-green tooltip'><span class="tooltiptext">آماده سرویس</span></i>
                                         <a href="/rooms/edit?id=<%=room.id%>"><i class='bx bxs-edit-alt bg-purple tooltip'><span class="tooltiptext">ویرایش اتاق</span></i></a>
                                         <a onclick='deleteRecord("rooms","<%=room.id %>")'><i  class='bx bxs-trash-alt bg-red tooltip'><span class="tooltiptext">حذف اتاق</span></i></a>
                                 </td>

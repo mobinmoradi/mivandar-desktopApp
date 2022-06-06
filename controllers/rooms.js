@@ -112,6 +112,18 @@ const main = async (req, res) => {
         alert = 'ویرایش اتاق با موفقیت انجام شد';
         statusAlert = 'success'
     }
+    if (req.query.job == 'status') {
+        alert = 'اتاق از هم اکنون آماده ثبت رزرو می باشد!';
+        statusAlert = 'success'
+    }
+    if (req.query.job == 'badStatus') {
+        alert = 'در حال حاضر این اتاق نباید تغییر وضعیت داشته باشد!';
+        statusAlert = 'error'
+    }
+    if (req.query.job == 'badDelete') {
+        alert = 'به دلیل اینکه اتاق مورد نظر در حال استفاده میباشد امکان حذف آن وجود ندارد!';
+        statusAlert = 'error'
+    }
     let page = +req.query.page;
     if (!page) {
         page = 1;
@@ -140,12 +152,23 @@ const main = async (req, res) => {
 }
 
 const deleteRoom = async (req, res) => {
+    let roomStatus;
     try {
-        await Room.destroy({ where: { id: req.query.id } })
+        roomStatus = await Room.findOne({ where: { id: req.query.id } })
     } catch (error) {
         console.log(error);
     }
-    res.redirect('/rooms/main?job=delete')
+    if (roomStatus.status == 'در حال استفاده') {
+        res.redirect('/rooms/main?job=badDelete')
+    } else {
+        try {
+            await Room.destroy({ where: { id: req.query.id } })
+        } catch (error) {
+            console.log(error);
+        }
+        res.redirect('/rooms/main?job=delete')
+    }
+
 }
 
 const edit = async (req, res) => {
@@ -167,7 +190,7 @@ const edit = async (req, res) => {
         roomE,
     })
 }
-const editUser = async (req, res) => {
+const editRoom = async (req, res) => {
 
     let validate
     try {
@@ -218,6 +241,25 @@ const editUser = async (req, res) => {
     }
 }
 
+const chengeStatus = async (req, res) => {
+    let roomStatus;
+    try {
+        roomStatus = await Room.findOne({ where: { id: req.query.id } })
+    } catch (error) {
+        console.log(error);
+    }
+    console.log(roomStatus);
+
+    if (roomStatus.status == 'نیاز به سرویس') {
+        await Room.update({ status: 'آماده تحویل' }, { where: { id: req.query.id } })
+        res.redirect('/rooms/main?job=status')
+
+    } else {
+        res.redirect('/rooms/main?job=badStatus')
+    }
+
+}
+
 
 
 
@@ -226,5 +268,6 @@ module.exports = {
     main,
     deleteRoom,
     edit,
-    editUser
+    editRoom,
+    chengeStatus
 }

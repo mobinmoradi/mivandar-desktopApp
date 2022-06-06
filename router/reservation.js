@@ -18,6 +18,8 @@ router.get('/edit',resController.edit)
 
 router.post('/edit',resController.editUser)
 
+router.get('/chengeStatus',resController.chengeStatus)
+
 
 
 

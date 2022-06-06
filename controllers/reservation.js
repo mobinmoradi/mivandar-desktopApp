@@ -60,10 +60,11 @@ const schema = {
 async function Roomlist() {
     let rooms;
     try {
-        rooms = await Room.findAll({ attributes: ['name'] })
+        rooms = await Room.findAll({ where: { status: 'آماده تحویل' } })
     } catch (error) {
         console.log(error);
     }
+
     let roomsName = rooms.map((value) => {
         return value.dataValues.name
     })
@@ -108,23 +109,23 @@ const newRes = async (req, res) => {
                 }
             })
         } else {
-            
+
             try {
-                let room = await Room.findOne({where:{name:reservation.roomName}})
-                let totalPay =((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24)+1) * room.cost;
-                await Room.update({status:'در حال استفاده'},{ where:{name:reservation.roomName}})
+                let room = await Room.findOne({ where: { name: reservation.roomName } })
+                let totalPay = ((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24) + 1) * room.cost;
+                await Room.update({ status: 'در حال استفاده' }, { where: { name: reservation.roomName } })
                 await Reservation.create({
-                    firstName:reservation.fname.trim(),
-                    lasttName:reservation.lname.trim(),
-                    gender:reservation.gender.trim(),
-                    nId:reservation.nid.trim(),
-                    callNumber:reservation.phone.trim(),
-                    address:reservation.address.trim(),
-                    roomName:reservation.roomName.trim(),
-                    enter:reservation.enter.trim(),
-                    out:reservation.out.trim(),
-                    pNum:reservation.pNum.trim(),
-                    description:reservation.description.trim(),
+                    firstName: reservation.fname.trim(),
+                    lasttName: reservation.lname.trim(),
+                    gender: reservation.gender.trim(),
+                    nId: reservation.nid.trim(),
+                    callNumber: reservation.phone.trim(),
+                    address: reservation.address.trim(),
+                    roomName: reservation.roomName.trim(),
+                    enter: reservation.enter.trim(),
+                    out: reservation.out.trim(),
+                    pNum: reservation.pNum.trim(),
+                    description: reservation.description.trim(),
                     totalPay
                 })
             } catch (error) {
@@ -133,7 +134,7 @@ const newRes = async (req, res) => {
             res.redirect('/reservation/main?job=add');
         }
 
-    
+
     } else {
         if (validate.some((obj) => { return obj.type == 'stringMin' })) {
             res.render(path.join(__dirname, '..', 'views', 'resForm.ejs'), {
@@ -175,6 +176,18 @@ const main = async (req, res) => {
         alert = ' رزرواسیون با موفقیت انجام شد!';
         statusAlert = 'success'
     }
+    if (req.query.job == 'delete') {
+        alert = 'حذف رزرو با موفقیت انجام شد';
+        statusAlert = 'success'
+    }
+    if (req.query.job == 'badStatus') {
+        alert = 'این رزرو قبلا به پایان رسیده است. برای تمدید مدت اقامت بهتر است از دکمه ویرایش رزرو استفاده کرد!';
+        statusAlert = 'error'
+    }
+    if (req.query.job == 'status') {
+        alert = 'رزرو مورد نظر با موفقیت به پایان رسید!';
+        statusAlert = 'success'
+    }
     let reservation;
     try {
         reservation = await Reservation.findAll()
@@ -202,12 +215,41 @@ const main = async (req, res) => {
     })
 }
 const deleteUser = async (req, res) => {
-
+    try {
+        let reservation = await Reservation.findOne({ where: { id: req.query.id } })
+        await Room.update({ status: 'نیاز به سرویس' }, { where: { name: reservation.roomName } })
+        await Reservation.destroy({ where: { id: req.query.id } })
+    } catch (error) {
+        console.log(error);
+    }
+    res.redirect('/reservation/main?job=delete')
 }
 const edit = async (req, res) => {
 
 }
 const editUser = async (req, res) => {
+
+}
+const chengeStatus = async (req, res) => {
+    let resStatus;
+    try {
+        resStatus = await Reservation.findOne({ where: { id: req.query.id } })
+    } catch (error) {
+        console.log(error);
+    }
+    if (resStatus.resStatus == 'اتمام عملیات') {
+        res.redirect('/reservation/main?job=badStatus')
+    } else {
+        try {
+            let reservation = await Reservation.findOne({ where: { id: req.query.id } })
+            await Room.update({ status: 'نیاز به سرویس' }, { where: { name: reservation.roomName } })
+            await Reservation.update({ resStatus: 'اتمام عملیات' },{ where: { id: req.query.id } })
+        } catch (error) {
+            console.log(error);
+        }
+        res.redirect('/reservation/main?job=status')
+    }
+
 
 }
 
@@ -218,6 +260,7 @@ module.exports = {
     main,
     deleteUser,
     edit,
-    editUser
+    editUser,
+    chengeStatus
 }
 

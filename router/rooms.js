@@ -30,7 +30,9 @@ router.get('/deleteRoom',roomController.deleteRoom)
 
 router.get('/edit',roomController.edit)
 
-router.post('/edit',roomController.editUser)
+router.post('/edit',roomController.editRoom)
+
+router.get('/chengeStatus',roomController.chengeStatus)
 
 
 
