@@ -288,7 +288,7 @@ const editUser = async (req, res) => {
     } else {
         let userE;
         try {
-            userE = await User.findOne({ where: { id: req.query.id } })
+            userE = await User.findOne({ where: { userName: user.userName } })
         } catch (error) {
             console.log(error);
         }

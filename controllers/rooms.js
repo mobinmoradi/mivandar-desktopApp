@@ -220,7 +220,7 @@ const editRoom = async (req, res) => {
     } else {
         let roomE;
         try {
-            roomE = await Room.findOne({ where: { id: req.query.id } })
+            roomE = await Room.findOne({ where: { name: room.name } })
         } catch (error) {
             console.log(error);
         }

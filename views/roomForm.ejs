@@ -15,13 +15,13 @@
                     <div class="bg-white m-table2 br-8 p-20">
                         <div class="flex ju-sb ">
                             <h3> <%= job %></h3>
-
+                            <a class="btn  btn-red bg-red btn-sm" href="/rooms/new">بازنشانی فرم</a>
                         </div>
 
                         <form class="form" method="post"  action="/rooms/new" autocomplete="off">
                             <div class=" input">
                                 <label for="name" class="required">نام:</label><br>
-                                <input name="name" type="text">
+                                <input name="name" type="text" maxlength="21">
                             </div>
                             <div class=" input">
                                 <label class="required" for="description">توضیحات:</label><br>
@@ -41,7 +41,7 @@
                             </div>
                             <div class=" input">
                                 <label class="required" for="cost">اجاره پایه:</label><br>
-                                <input name="cost" onkeyup="cost1(this.value)" type="number">
+                                <input name="cost" onkeyup="cost1(this.value)" type="number" maxlength="15">
                                 <p id="cost"></p>
                             </div>
 

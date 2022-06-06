@@ -22,7 +22,7 @@
             </div>
         </a>
     </div>
-    <% if (true) { %>
+    <% if (user.role=='ادمین پشتیبان'|| user.role=='مدیر') { %>
         <div class="b-b">
             <a href="/users/main">
                 <div class="flex  ju-sb <% if (location=='users') { %>select<% } %> px-10  py-5 my-5 hoverPages">

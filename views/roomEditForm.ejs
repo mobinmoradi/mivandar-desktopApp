@@ -20,14 +20,14 @@
                             <div class=" input">
                                 <label for="name" class="required">نام:</label><br>
                                 <input name="name" type="text" disabled value=<%=roomE.name%>>
-                                <input type="hidden" name="name" type="text" value=<%=roomE.name%>>
+                                <input type="hidden" name="name" type="text" maxlength="21" value=<%=roomE.name%>>
                             </div>
                             <div class=" input">
                                 <label class="required" for="description">توضیحات:</label><br>
                                 <input name="description" type="text" value=<%=roomE.description%>>
                             </div>
                             <div class=" input">
-                                <label class="required" for="type">نوع اتاق:</label><br>
+                                <label class="required" for="type" >نوع اتاق:</label><br>
                                 <select name="type">
                                     <option value="یک تخته"<% if (roomE.type=="یک تخته") { %>selected<% } %>>یک تخته</option>
                                     <option value="دو تخته"<% if (roomE.type=="دو تخته") { %>selected<% } %>>دو تخته</option>
@@ -40,10 +40,15 @@
                             </div>
                             <div class=" input">
                                 <label class="required" for="cost">اجاره پایه:</label><br>
-                                <input name="cost" type="number" value=<%=roomE.cost%>>
+                                <input name="cost" type="number" id="costInput" onkeyup="cost1(this.value)" maxlength="15" value=<%=roomE.cost%>>
+                                <p id="cost"></p>
+                                <script>
+                                    let input = document.getElementById("costInput");
+                                    cost1(input.value);
+                                </script>
                             </div>
                             <div class="flex ltr w-full">
-                                <input class="btn m-submit  btn-blue btn-sm" type="submit" value="افزودن">
+                                <input class="btn m-submit  btn-blue btn-sm" type="submit" value="ویرایش">
                                 <a class="btn m-submit btn-red bg-red btn-sm" href="/rooms/main">انصراف</a>
                             </div>
                         </form>

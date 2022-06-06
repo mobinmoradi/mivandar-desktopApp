@@ -12,67 +12,63 @@
                 <div class="bg-dash absolute "> </div>
                 <div class="bg-white m-table1 br-8 p-20">
                     <div class="flex ju-sb ">
-                        <h3>
-                            <%= job %>
-                            
-                        </h3>
-                        <a class="btn  btn-red bg-red btn-sm" href="/reservation/new">بازنشانی فرم</a>
+                        
+                        <h3> <%= job %></h3>
+                        <h3>   شناسه رزرو:  <%= resE.id %>  </h3>
+                        <a class="btn  btn-red bg-red btn-sm" href="/reservation/edit?id=<%= resE.id %>">بازنشانی فرم</a>
                     </div>
 
-                    <form class="form" method="post" action="/reservation/new" autocomplete="off">
+                    <form class="form" method="post" action="/reservation/edit" autocomplete="off">
                         <div class=" input">
-                            <label for="fname" class="required">نام:</label><br>
-                            <input name="fname" type="text" maxlength="21">
+                            <label for="fname" class="required" >نام:</label><br>
+                            <input name="fname" type="text" value=<%=resE.firstName%> maxlength="21">
                         </div>
                         <div class=" input">
                             <label class="required" for="lname">نام خانوادگی:</label><br>
-                            <input name="lname" type="text" maxlength="21">
+                            <input name="lname" type="text" value=<%=resE.lasttName%> maxlength="21">
                         </div>
                         <div class=" input">
                             <label class="required" for="gender">جنسیت:</label><br>
                             <select name="gender">
-                                <option value="مرد">مرد</option>
-                                <option value="زن">زن</option>
+                                <option value="مرد" <% if (resE.gender=="مرد") { %>selected<% } %>>مرد</option>
+                                <option value="زن" <% if (resE.gender=="زن") { %>selected<% } %>>زن</option>
                             </select>
                         </div>
                         <div class=" input">
                             <label class="required" for="nid">کد ملی:</label><br>
-                            <input name="nid" type="number" maxlength="15">
+                            <input name="nid" type="number" value=<%=resE.nId%> maxlength="15">
                         </div>
                         <div class=" input">
                             <label class="required" for="phone">شماره تماس:</label><br>
-                            <input name="phone" type="number" maxlength="15">
+                            <input name="phone" type="number"value=<%=resE.callNumber%> maxlength="15">
                         </div>
                         <div class=" input">
                             <label class="required" for="address">آدرس:</label><br>
-                            <input name="address" type="text" maxlength="100">
+                            <input name="address" type="text"value=<%=resE.address%> maxlength="100">
                         </div>
                         <div class=" input">
                             <label class="required" for="roomName">نام اتاق:</label><br>
-                            <select name="roomName">
-                                <% rooms.forEach(el=> { %>
-                                    <option value=<%=el%>><%=el%></option>
-                                    <% }) %>
-                            </select>
+                            <input name="roomName" type="text" disabled value=<%=resE.roomName%>>
+                            <input type="hidden" name="roomName" type="text" value=<%=resE.roomName%>>
                         </div>
                         <div class=" input">
                             <label class="required" for="enter"> تاریخ ورود:</label><br>
-                            <input name="enter" data-jdp>
+                            <input name="enter" data-jdp value=<%=resE.enter%> >
                         </div>
                         <div class=" input">
                             <label class="required" for="out"> تاریخ خروج:</label><br>
-                            <input name="out" data-jdp>
+                            <input name="out" data-jdp value=<%=resE.out%>>
                         </div>
                         <div class=" input">
                             <label class="required" for="pNum">تعداد مهمان:</label><br>
-                            <input name="pNum" type="number" maxlength="5">
+                            <input name="pNum" type="number" value=<%=resE.pNum%> maxlength="5">
                         </div>
                         <div class=" input">
                             <label class="" for="description">توضیحات:</label><br>
-                            <input name="description" type="text" maxlength="200">
+                            <input name="description" type="text" value=<%=resE.description%> maxlength="200">
                         </div>
                         <div class="flex ltr w-full">
-                            <input class="btn m-submit  btn-blue btn-sm" type="submit" value="افزودن">
+                            <input class="btn m-submit  btn-blue btn-sm" type="submit" value="ویرایش">
                             <a class="btn m-submit btn-red bg-red btn-sm" href="/reservation/main">انصراف</a>
                         </div>
                     </form>

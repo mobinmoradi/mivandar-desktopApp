@@ -30,7 +30,7 @@ router.get('/about', (req, res) => {
 router.get('/about2', (req, res) => {
     process.env.name = '';
     process.env.role ='';
-    process.env.welcome = true;
+    process.env.welcome = 1;
     res.render(path.join(__dirname, '..', 'views', 'about.ejs'), {
         alert: 'برای ورود مجدد به سیستم مجددا login انجام دهید!',
         statusAlert: 'info'
@@ -39,7 +39,7 @@ router.get('/about2', (req, res) => {
 router.get('/logout', (req, res) => {
     process.env.name = '';
     process.env.role ='';
-    process.env.welcome = true;
+    process.env.welcome = 1;
     let bg = Math.ceil(Math.random() * 10);
     res.render(path.join(__dirname, '..', 'views', 'index.ejs'), {
         bg,

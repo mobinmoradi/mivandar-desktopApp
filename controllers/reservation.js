@@ -73,7 +73,6 @@ async function Roomlist() {
 
 const newRes = async (req, res) => {
     let roomslist = await Roomlist();
-    console.log(req.body);
     let validate
     try {
         const check = v.compile(schema);
@@ -82,7 +81,6 @@ const newRes = async (req, res) => {
     } catch (error) {
         console.log(error);
     }
-    console.log(validate);
 
 
     if (validate === true) {
@@ -180,6 +178,10 @@ const main = async (req, res) => {
         alert = 'حذف رزرو با موفقیت انجام شد';
         statusAlert = 'success'
     }
+    if (req.query.job == 'edit') {
+        alert = 'ویرایش رزرو با موفقیت انجام شد';
+        statusAlert = 'success'
+    }
     if (req.query.job == 'badStatus') {
         alert = 'این رزرو قبلا به پایان رسیده است. برای تمدید مدت اقامت بهتر است از دکمه ویرایش رزرو استفاده کرد!';
         statusAlert = 'error'
@@ -194,6 +196,7 @@ const main = async (req, res) => {
     } catch (error) {
         console.log(error);
     }
+    reservation=reservation.reverse();
     let page = +req.query.page;
     if (!page) {
         page = 1;
@@ -225,10 +228,116 @@ const deleteUser = async (req, res) => {
     res.redirect('/reservation/main?job=delete')
 }
 const edit = async (req, res) => {
-
+    let resE;
+    try {
+        resE = await Reservation.findOne({ where: { id: req.query.id } })
+    } catch (error) {
+        console.log(error);
+    }
+    res.render(path.join(__dirname, '..', 'views', 'resEditForm.ejs'), {
+        job: 'ویرایش رزرو',
+        alert: '',
+        statusAlert: '',
+        location: 'reservation',
+        user: {
+            name: process.env.name,
+            role: process.env.role
+        },
+        resE,
+    })
 }
 const editUser = async (req, res) => {
+    
+    let validate
+    try {
+        const check = v.compile(schema);
+        validate = check(req.body)
 
+    } catch (error) {
+        console.log(error);
+    }
+    console.log(validate);
+
+    let resE;
+    try {
+        resE = await Reservation.findOne({ where: { roomName: req.body.roomName } })
+    } catch (error) {
+        console.log(error);
+    }
+    if (validate === true) {
+
+        let reservation = req.body;
+
+    
+        moment.locale('fa');
+        let mIn = moment(req.body.enter, 'jYYYY-jM-jD');
+        let mOut = moment(req.body.out, 'jYYYY-jM-jD');
+        moment.locale('en');
+        var date1 = new Date(mIn.format('YYYY-M-D'));
+        var date2 = new Date(mOut.format('YYYY-M-D'));
+        if ((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24) < 0) {
+            res.render(path.join(__dirname, '..', 'views', 'resEditForm.ejs'), {
+                job: 'رزرو جدید',
+                alert: 'تاریخ خروج نباید تاریخی قبل از تاریخ ورود باشد! ',
+                statusAlert: 'error',
+                location: 'reservation',
+                user: {
+                    name: process.env.name,
+                    role: process.env.role
+                },
+                resE
+            })
+        } else {
+
+            try {
+                console.log((date2.getTime() - Date.now()) / (1000 * 3600 * 24));
+                if ((date2.getTime() - Date.now()) / (1000 * 3600 * 24) >= 0) {
+                    await Room.update({ status: 'در حال استفاده' }, { where: { name: reservation.roomName } })
+                    await Reservation.update({resStatus:'در حال اقامت'}, {where: {roomName: reservation.roomName}});
+                }
+                let room = await Room.findOne({ where: { name: reservation.roomName } })
+                let totalPay = ((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24) + 1) * room.cost;
+                await Reservation.update({
+                    firstName: reservation.fname.trim(),
+                    lasttName: reservation.lname.trim(),
+                    gender: reservation.gender.trim(),
+                    nId: reservation.nid.trim(),
+                    callNumber: reservation.phone.trim(),
+                    address: reservation.address.trim(),
+                    roomName: reservation.roomName.trim(),
+                    enter: reservation.enter.trim(),
+                    out: reservation.out.trim(),
+                    pNum: reservation.pNum.trim(),
+                    description: reservation.description.trim(),
+                    totalPay
+                }, {
+                    where: {
+                        roomName: reservation.roomName
+                    }
+                });
+            } catch (error) {
+                console.log(error);
+            }
+
+            res.redirect('/reservation/main?job=edit');
+        }
+
+    } else {
+        if (validate.some((obj) => { return obj.type == 'stringMin' })) {
+            res.render(path.join(__dirname, '..', 'views', 'resEditForm.ejs'), {
+                job: 'رزرو جدید',
+                alert: ' فیلدهای الزامی نباید خالی باشند! ',
+                statusAlert: 'error',
+                rooms: roomslist,
+                location: 'reservation',
+                user: {
+                    name: process.env.name,
+                    role: process.env.role
+                },
+                resE
+            })
+        }
+    }
 }
 const chengeStatus = async (req, res) => {
     let resStatus;
@@ -243,7 +352,7 @@ const chengeStatus = async (req, res) => {
         try {
             let reservation = await Reservation.findOne({ where: { id: req.query.id } })
             await Room.update({ status: 'نیاز به سرویس' }, { where: { name: reservation.roomName } })
-            await Reservation.update({ resStatus: 'اتمام عملیات' },{ where: { id: req.query.id } })
+            await Reservation.update({ resStatus: 'اتمام عملیات' }, { where: { id: req.query.id } })
         } catch (error) {
             console.log(error);
         }
